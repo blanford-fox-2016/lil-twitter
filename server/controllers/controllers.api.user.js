@@ -1,3 +1,3 @@
-/**
- * Created by dharmadi93 on 11/16/16.
- */
+const User = require('../models/user')
+const passport = require('passport')
+const jwt = require('jsonwebtoken')
