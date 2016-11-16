@@ -120,7 +120,8 @@ let loginUser = (req, res, next) => {
         return res.status(200).json({
           token: jwt.sign({
             sub: user._id,
-            username: user.username
+            username: user.username,
+            avatar_url: user.avatar_url
           }, 'secret')
         })
       }

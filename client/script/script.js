@@ -1,5 +1,34 @@
 const URL_Tweets = 'http://localhost:3000/api/tweets/'
 
+const Auth = {
+  authenticateUser: (data) => {
+    if (data.status === 'error') console.log('No account:', data)
+    Auth.deauthenticateUser()
+    console.log('data:', data)
+    localStorage.setItem('token', data.token)
+    console.log('token:', localStorage.getItem('token'))
+    window.location = '/'
+  },
+  isUserAuthenticated: () => {
+    console.log('token:', localStorage.getItem('token'))
+    return localStorage.getItem('token') !== null
+  },
+  deauthenticateUser: () => {
+    // $.ajax(`${api}/auth/signout`)
+    // req.session.destroy()
+    localStorage.removeItem('token')
+  },
+  getToken: () => {
+    return localStorage.getItem('token')
+  },
+  getUser: () => {
+    let token = Auth.getToken()
+    if (!token) return {}
+    else {
+      return jwt_decode(token)
+    }
+  }
+}
 $(document).ready(function(){
   // process new tweet
   $('#btn_add').on('click', function(e){
@@ -32,6 +61,7 @@ $(document).ready(function(){
     e.preventDefault()
     processLogout()
   })
+
 })
 
 function processLogout(){
@@ -41,6 +71,7 @@ function processLogout(){
 }
 
 function processLogin(){
+  // console.log(Auth.getUser());
   var data_login_user = {
     username: $('#username').val(),
     password: $('#password').val()
@@ -166,11 +197,13 @@ function showRecents(){
 
 // process new tweet
 function ajaxPOST(){
-
+  console.log(Auth.getUser());
   var new_data = {
     //avatar_url: dari localstorage
-    //username: dari localstorage
-    content: $('#content').val()
+    // username: dari localstorage
+    username: Auth.getUser().username,
+    content: $('#content').val(),
+    avatar_url: Auth.getUser().avatar_url
     //todo: hastag
   }
   console.log(new_data);

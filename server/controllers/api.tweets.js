@@ -42,9 +42,9 @@ let postNewTweet = (req, res) => {
   console.log(hashtagUI);
 
   Tweet.create({
-    avatar_url: "https://s-media-cache-ak0.pinimg.com/736x/f9/44/98/f944980f424d28501fe6fb8232d844c5.jpg",
+    avatar_url: req.body.avatar_url,
     content: req.body.content,
-    username: "kenduigraha",
+    username: req.body.username,
     hashtag: hashtagUI
   }, (err, new_data) => {
     if(err) res.status(400).json({'error': `Error : ${err}`})
