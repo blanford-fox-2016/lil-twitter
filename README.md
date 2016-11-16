@@ -47,15 +47,34 @@ const Twit = new Schema({
 })
 ```
 
+### User
+
+```
+const User = new Schema({
+    username: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String
+    },
+    photo_avatar: {
+        type: String
+    }
+}, {
+    timestamps: true
+})
+```
+
 ## Routing
 
 ### API Twit
 
-| Endpoint                  | HTTP      | Description             |
-| ----------                | -----     | ------------            |
-| api/twit/seed             | GET       | Create Dummy Twit Data  |
-| api/twit/recent           | GET       | Get Recent Twit         |
-| api/twit/search/:hashtag  | GET       | Get Twit By Hastag      |
-| api/twit                  | POST      | Create Twit             |
-| api/twit                  | DELETE    | Delete All Twit         |
-| api/twit/:twitId          | DELETE    | Delete Twit By twitId   |
+| Endpoint                      | HTTP      | Description             |
+| ----------                    | -----     | ------------            |
+| api/twit/seed                 | GET       | Create Dummy Twit Data  |
+| api/twit/recent               | GET       | Get Recent Twit         |
+| api/twit/search?q=<keyword>   | GET       | Get Twit By Hastag      |
+| api/twit                      | POST      | Create Twit             |
+| api/twit                      | DELETE    | Delete All Twit         |
+| api/twit/:twitId              | DELETE    | Delete Twit By twitId   |
