@@ -60,7 +60,12 @@ module.exports = {
     },
 
     getTwitByHashtag: (req, res) => {
-
+        Twit.findOne({
+            hashtag_names: req.params.hashtag
+        }, (err, data) => {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     createTwit: (req, res) => {
