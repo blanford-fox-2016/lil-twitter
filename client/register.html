@@ -16,8 +16,8 @@
           <a class="navbar-brand" href="#">lil - tweet</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Login</a></li>
-          <li><a href="register.html">Register</a></li>
+          <li><a href="index.html">Login</a></li>
+          <li class="active"><a href="register.html">Register</a></li>
         </ul>
         <!-- <div class="col-sm-6 col-md-3">
            <form class="navbar-form" role="search">
@@ -33,9 +33,9 @@
     </nav>
   <!-- navbar -->
 
-  <!-- login -->
+  <!-- register -->
   <div class="container">
-    <form id="form_login">
+    <form id="form_register" method="post" action="http://localhost:3000/api/users">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username">
@@ -45,11 +45,11 @@
         <input type="password" class="form-control" id="password">
       </div>
       <div class="form-group">
-        <button type="button" id="btn_login" class="btn btn-lg btn-success">Login</button>
+        <button type="button" id="btn_register" class="btn btn-lg btn-success">Register</button>
       </div>
     </form>
   </div>
-  <!-- end login -->
+  <!-- end register -->
 
 </body>
   <script src="./lib/jquery/dist/jquery.min.js"></script>

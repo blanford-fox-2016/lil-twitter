@@ -16,10 +16,10 @@
           <a class="navbar-brand" href="#">lil - tweet</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Login</a></li>
-          <li><a href="register.html">Register</a></li>
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Logout</a></li>
         </ul>
-        <!-- <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-3">
            <form class="navbar-form" role="search">
            <div class="input-group">
                <input type="text" class="form-control" placeholder="Search tweet" name="hashtag" id="hashtag">
@@ -28,29 +28,31 @@
                </div>
            </div>
            </form>
-       </div> -->
+       </div>
       </div>
     </nav>
-  <!-- navbar -->
+    <!-- navbar -->
 
-  <!-- login -->
-  <div class="container">
-    <form id="form_login">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password">
-      </div>
-      <div class="form-group">
-        <button type="button" id="btn_login" class="btn btn-lg btn-success">Login</button>
-      </div>
-    </form>
-  </div>
-  <!-- end login -->
+    <div class="container">
+      <div id="search">
 
+      </div>
+      <div class="row">
+        <form id="form_new_tweet">
+          <div class="form-group">
+            <label for="content">New Tweet</label>
+            <textarea type="text" id="content" name="content" class="form-control" style="resize:none;"></textarea>
+          </div>
+          <div class="form-group pull-right">
+            <button type="button" class="btn btn-lg btn-success" id="btn_add">tweet</button>
+          </div>
+          <div class="form-group"></div>
+        </form>
+      </div>
+      <div id="recent">
+
+      </div>
+    </div>
 </body>
   <script src="./lib/jquery/dist/jquery.min.js"></script>
   <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>

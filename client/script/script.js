@@ -1,4 +1,5 @@
-const URL = 'http://localhost:3000/api/tweets/'
+const URL_Tweets = 'http://localhost:3000/api/tweets/'
+
 $(document).ready(function(){
   // process new tweet
   $('#btn_add').on('click', function(e){
@@ -13,7 +14,30 @@ $(document).ready(function(){
     e.preventDefault()
     processSearch()
   })
+
+  //process register
+  $('#btn_register').on('click', function(e){
+    e.preventDefault()
+    processRegister()
+  })
 })
+
+function processRegister(){
+  var data_new_user = {
+    username: $('#username').val(),
+    password: $('#password').val()
+  }
+  $.post({
+    url: $('#form_register').attr('action'),
+    data: data_new_user,
+    success: function(new_user){
+      console.log(new_user);
+      localStorage.setItem('token', new_user.token)
+      console.log(localStorage.getItem('token'));
+      window.location = 'index.html'
+    }
+  })
+}
 
 function closeSearch(id){
   $(`#search_${id}`).remove()
@@ -22,7 +46,7 @@ function closeSearch(id){
 function processSearch(){
   var hashtag = $('#hashtag').val()
   $.ajax({
-    url: URL+'/search?hashtag='+hashtag,
+    url: URL_Tweets+'/search?hashtag='+hashtag,
     success: function(searched_data){
       console.log(searched_data);
       var search_HTML = ''
@@ -58,7 +82,7 @@ function processSearch(){
 
 function deleteData(id){
   $.ajax({
-    url: URL+id,
+    url: URL_Tweets+id,
     method: "DELETE",
     success: function(deleted_data){
       $(`#${deleted_data._id}`).remove()
@@ -69,7 +93,7 @@ function deleteData(id){
 // show recents tweets
 function showRecents(){
   $.ajax({
-    url: URL,
+    url: URL_Tweets,
     success: function(all_data_server){
       console.log(all_data_server);
       var all_data_HTML = ''
@@ -77,7 +101,7 @@ function showRecents(){
       for (var i = 0; i < all_data_server.length; i++) {
         all_data_HTML += `
         <div class="row" id="${all_data_server[i]._id}">
-          <div class="col-sm-10 col-sm-offset-1">
+          <div class="col-sm-8 col-sm-offset-2">
             <div class="panel panel-default">
               <div class="panel-heading pull-right">
                 <button type="button" onclick="deleteData('${all_data_server[i]._id}')">x</button>
@@ -115,14 +139,14 @@ function ajaxPOST(){
   console.log(new_data);
 
   $.ajax({
-    url: URL,
+    url: URL_Tweets,
     method: 'POST',
     data: new_data,
     success: function(new_data_server){
       // console.log(new_data);
       var new_HTML = `
       <div class="row" id="${new_data_server._id}">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-8 col-sm-offset-2">
           <div class="panel panel-default">
             <div class="panel-heading pull-right">
               <button type="button" onclick="deleteData('${new_data_server._id}')">x</button>

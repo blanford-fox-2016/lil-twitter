@@ -1,5 +1,5 @@
 'use strict'
-const passport = require('pasport')
+const passport = require('passport')
 const User = require('../models/api.users')
 const jwt = require('jsonwebtoken')
 
@@ -17,37 +17,6 @@ let allUsers = (req, res) => {
     if(!users) res.status(404).json({'message': 'Failed to get all users'})
     console.log(`get all users`);
     res.status(200).json(users)
-  })
-}
-
-/*
-  * @api {post} /api/users
-  * @api purpose post new user
-  * @apiName addUser
-  * @apiGroup users
-  *
-  * @apiSuccess add new user's username {String}
-*/
-let addUser = (req, res, next) => {
-  console.log(`ini masuk`);
-  console.log(req.body);
-  User.register({
-    userId   : 1,
-    username : req.body.username
-    // arcticle id add here
-  }, req.body.password, (err, new_user) => {
-    console.log(`test`);
-    if(err) res.status(400).json({'error': 'Error: ${err}'})
-    if(!new_user) res.status(404).json({'message': 'Failed to add new user'})
-
-    passport.authenticate('local')(req, res, () => {
-        if (err) {
-          return next(err)
-        }else{
-          res.status(200).json(new_user)// nanti jwt di lempar
-        }
-
-    })
   })
 }
 
@@ -112,22 +81,22 @@ let registerLocalUser = (req, res, next) => {
     if(err) res.status(400).json({'error': `Register Error: ${err}`})
     if(!new_user) res.status(404).json({'message': 'Failed to register a user'})
 
-    // passport.authenticate('local', {
-    //   successRedirect: '/',
-    //   successFlash: true,
-    //   failureRedirect: '/register',
-    //   failureFlash: true
-    // }, (err, user, info) => {
-    //   if(err) return res.status(400).json({'error': 'Login Error: ${err}'})
-    //   if(!user) return res.status(404).json({'message': 'Register succeded but sign in falied'})
-    //
-    //   return res.status(200).json({
-    //     token: jwt.sign({
-    //       sub: user._id,
-    //       username: user.username
-    //     }, 'secret')
-    //   })
-    // })(req, res, next)
+    passport.authenticate('local', {
+      successRedirect: '/',
+      successFlash: true,
+      // failureRedirect: '/register',
+      failureFlash: true
+    }, (err, user, info) => {
+      if(err) return res.status(400).json({'error': `Login Error: ${err}`})
+      if(!user) return res.status(404).json({'message': 'Register succeded but sign in falied'})
+
+      return res.status(200).json({
+        token: jwt.sign({
+          sub: user._id,
+          username: user.username
+        }, 'secret')
+      })
+    })(req, res, next)
   })
 }
 
@@ -160,7 +129,6 @@ let loginUser = (req, res, next) => {
 
 module.exports = {
   allUsers   : allUsers,
-  addUser    : addUser,
   editUser   : editUser,
   deleteUser : deleteUser,
   registerLocalUser : registerLocalUser,

@@ -6,11 +6,8 @@ const controller = require('../controllers/api.users')
 /* GET All Users. */
 router.get('/', controller.allUsers)
 
-/* Process New User. */
-router.post('/', controller.addUser);
-
 /* Process Register Local User. */
-router.post('/register_local', controller.registerLocalUser);
+router.post('/', controller.registerLocalUser);
 
 /* Process Login User. */
 router.post('/login', controller.loginUser);

@@ -11,6 +11,16 @@ const routesUsers = require('./routes/api.users')
 
 const app = express();
 
+// JSON Web Tokens
+const jwt = require('jsonwebtoken')
+
+// Authentication
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
+//models
+const User = require('./models/api.users')
+
 //mongoose
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise
@@ -31,6 +41,11 @@ app.use(cors())
 
 app.use('/api/tweets', routesTweets);
 app.use('/api/users', routesUsers);
+
+// passport
+// Local
+passport.use(new LocalStrategy(User.authenticate()))
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
