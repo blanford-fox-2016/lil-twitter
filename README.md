@@ -1,5 +1,6 @@
 # lil-twitter
 
-#### Screenshots
+#### Mockup
 
-![lil-twitter mockup](http://i.imgur.com/j4PJFuZ.png "mockup")
+![lil-twitter m
+ockup](http://i.imgur.com/j4PJFuZ.png "mockup")
