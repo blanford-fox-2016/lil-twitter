@@ -40,7 +40,8 @@ const Twit = new Schema({
     },
     username: {
         type: String
-    }
+    },
+    hashtag_names: []
 })
 ```
 
