@@ -22,7 +22,9 @@ let twitSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    hashtag: [{ type: String }]
+    hashtag: {
+        type: Array
+    }
 }, {
     timestamps: true
 });

@@ -25,12 +25,13 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li id='nav-home'><a href="#">Home</a></li>
-                    <li id="nav-recent"><a href="#">Recent</a></li>
                     <li id="nav-create"><a href="#">New Twit</a></li>
+                    <li id="nav-register"><a href="#">Register</a></li>
+                    <li id="nav-login"><a href="#">Login</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form class="form-inline">
+                        <form id='nav-search' class="form-inline">
                             <div class="form-group">
                                 <label class="sr-only" for="exampleInputAmount">Search</label>
                                 <div class="input-group">
@@ -40,6 +41,9 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Search</button>
                         </form>
+                    </li>
+                    <li>
+                      <li ><a id="nav-logout" role="button" class="btn btn-danger">Logout</a></li>
                     </li>
                 </ul>
             </div>
@@ -57,6 +61,7 @@
 </body>
 <script src="./src/javascripts/jquery.min.js" charset="utf-8"></script>
 <script src="./src/javascripts/bootstrap.min.js" charset="utf-8"></script>
+<script src="./src/jwt-decode/build/jwt-decode.min.js" charset="utf-8"></script>
 <script src="./src/javascripts/javascript.js" charset="utf-8"></script>
 
 

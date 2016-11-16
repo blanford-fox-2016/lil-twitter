@@ -34,12 +34,24 @@ module.exports = {
         });
     },
     createNewTwit: function(req, res) {
+        console.log('body >>>>>>>', req.body);
+
+        let tweet = req.body.content
+        let arrHash = tweet.split(' ')
+        let storage = []
+        for (var i = 0; i < arrHash.length; i++) {
+            if (arrHash[i][0] == '#') {
+                storage.push(arrHash[i].slice(1))
+            }
+        }
+        console.log('storage>>>>>>>>>', storage);
+
         Twit.create({
-            avatar_url: 'http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/38/38559df760a478e153188b932d070477ae94d7c6_full.jpg',
+            avatar_url: req.body.avatar_url,
             content: req.body.content,
-            username: 'felixthebluecat',
-            name: 'Felix',
-            hashtag: req.body.hashtag
+            username: req.body.username,
+            name: req.body.name,
+            hashtag: storage
         }, function(err, data) {
             if (err) {
                 res.json({ message: `Error : ${err}` })
