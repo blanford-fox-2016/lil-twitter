@@ -6,7 +6,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const routesTweet = require('./routes/api.tweets')
+const routesTweets = require('./routes/api.tweets')
+const routesUsers = require('./routes/api.users')
 
 const app = express();
 
@@ -28,7 +29,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
-app.use('/api/tweets', routesTweet);
+app.use('/api/tweets', routesTweets);
+app.use('/api/users', routesUsers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
