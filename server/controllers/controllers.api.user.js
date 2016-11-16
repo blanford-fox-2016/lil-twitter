@@ -95,15 +95,15 @@ module.exports = {
         }, function (err, user, info) {
             console.log(user)
             if (err) return res.json(err)
-            else res.json(user)
+            else {
+                return res.status(200).json({
+                    token: jwt.sign({
+                        userId: user._id,
+                        username: user.username
+                    }, process.env.SESSION_SECRET)
+                })
+            }
 
-
-            // return res.status(200).json({
-            //     token: jwt.sign({
-            //         username: user.username,
-            //         name: user.name
-            //     }, process.env.SESSION_SECRET)
-            // })
         })(req, res, next)
     }
 
