@@ -2,7 +2,7 @@
 
 // express dipendencies
 const express = require('express');
-const routes = express.Router();
+const router = express.Router();
 
 // local dipendencies
 const Controller = require('../controllers/tweet.controller');
