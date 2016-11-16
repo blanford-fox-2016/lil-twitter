@@ -42,6 +42,8 @@ const Twit = new Schema({
         type: String
     },
     hashtag_names: []
+}, {
+    timestamps: true
 })
 ```
 

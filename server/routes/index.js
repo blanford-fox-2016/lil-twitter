@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const twitController = require('../controllers/controllers.api.twit')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.post('/', twitController.createTwit)
 
 module.exports = router;

@@ -18,6 +18,8 @@ const Twit = new Schema({
         type: String
     },
     hashtag_names: []
+}, {
+    timestamps: true
 })
 
 module.exports = mongoose.model('Twit', Twit)
