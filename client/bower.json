@@ -1,0 +1,23 @@
+{
+  "name": "Ken Duigraha Putra",
+  "description": "",
+  "main": "script/script.js",
+  "authors": [
+    "Ken Duigraha Putra <kenduigraha@yahoo.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/blanford-fox-2016/lil-twitter",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "jwt-decode": "^2.1.0"
+  }
+}

@@ -46,7 +46,6 @@ app.use('/api/users', routesUsers);
 // Local
 passport.use(new LocalStrategy(User.authenticate()))
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
