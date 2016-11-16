@@ -8,7 +8,7 @@ make little-twitter using node.js, express framework, jQuery, bootstrap & mongod
 
 ```sh
 cd client
-npm isntall
+npm install
 bower install
 gulp
 ```
@@ -61,9 +61,7 @@ let tweetSchema = new Schema({
   "avatar_url"  : String,
   "content"     : String,
   "username"    : String,
-  "hashtag"      : [
-    "type"      : String
-  ]
+  "hashtag"      : []
 }, {
   "timestamps": true
 })

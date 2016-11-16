@@ -14,7 +14,7 @@ const seeder = require('../data/seed.tweets.json')
 */
 let getRecentTweets = (req, res) => {
   Tweet.find({}, (err, all_data) => {
-    if(err) res.status(400).json({`error`: `Error : ${err}`})
+    if(err) res.status(400).json({'error': `Error : ${err}`})
     if(!all_data) res.status(404).json(`Failed to get recent tweet`)
 
     res.status(200).json(all_data)
@@ -36,7 +36,7 @@ let postNewTweet = (req, res) => {
     username: "kenduigraha",
     hashtag: req.body.hashtag
   }, (err, new_data) => {
-    if(err) res.status(400).json({`error`: `Error : ${err}`})
+    if(err) res.status(400).json({'error': `Error : ${err}`})
     if(!new_data) res.status(404).json(`Failed to create new tweet`)
 
     res.status(200).json(new_data)
@@ -55,7 +55,7 @@ let deleteOneTweet = (req, res) => {
   Tweet.findOneAndRemove({
     _id: req.params.id
   }, (err, deleted_data) => {
-    if(err) res.status(400).json({`error`: `Error : ${err}`})
+    if(err) res.status(400).json({'error': `Error : ${err}`})
     if(!deleted_data) res.status(404).json(`Failed to delete tweet`)
 
     res.status(200).json(deleted_data)
@@ -72,7 +72,7 @@ let deleteOneTweet = (req, res) => {
 */
 let seedDataTweets = (req, res) => {
   Tweet.create(seeder, (err, seed_data) => {
-    if(err) res.status(400).json({`error`: `Error : ${err}`})
+    if(err) res.status(400).json({'error': `Error : ${err}`})
     if(!seed_data) res.status(404).json(`Failed to seed data tweet`)
 
     res.status(200).json(seed_data)
@@ -89,7 +89,7 @@ let seedDataTweets = (req, res) => {
 */
 let deleteAllTweets = (req, res) => {
   Tweet.remove({}, (err, removed_all) => {
-    if(err) res.status(400).json({`error`: `Error : ${err}`})
+    if(err) res.status(400).json({'error': `Error : ${err}`})
     if(!removed_all) res.status(404).json(`Failed to delete all tweet`)
 
     res.status(200).json(removed_all)
@@ -108,7 +108,7 @@ let searchTweetByHashTag = (req, res) => {
   Tweet.findOne({
     hashtag: req.query.hashtag
   }, (err, search_data) => {
-    if(err) res.status(400).json({`error`: `Error : ${err}`})
+    if(err) res.status(400).json({'error': `Error : ${err}`})
     if(!search_data) res.status(404).json(`Failed to search a tweet`)
 
     res.status(200).json(search_data)
