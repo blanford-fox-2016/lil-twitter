@@ -1,14 +1,20 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema
 
-const House = new Schema({
-    name: String,
-    price: Number,
-    rooms: Number,
-    address: String,
-    image: String
+const Tweet = new Schema({
+    tweet: String,
+    user: String,
+    createdAt: { type: Date, default: Date.now }
 }, {
     timestamps: true
 })
 
-module.exports = mongoose.model('House', House)
+Tweet.pre('save', next => {
+  now = new Date();
+  if(!this.createdAt) {
+    this.createdAt = now;
+  }
+  next();
+});
+
+module.exports = mongoose.model('Tweet', Tweet)

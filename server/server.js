@@ -18,7 +18,7 @@ const express = require('express'),
     mongoose = require('mongoose'),
 
     //App modules
-    apiHouses = require('./routes/api.houses')
+    apiTweets = require('./routes/api.tweets')
 
 //==========APP CONFIGURATION==========
 
@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 //==========REGISTER ROUTES==========
 
-app.use('/api', apiHouses)
+app.use('/api', apiTweets)
 
 //==========RUN THE APP==========
 

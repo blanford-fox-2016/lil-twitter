@@ -1,13 +1,13 @@
 //DATA WITH MONGOOSE MODEL
 
-const House = require('../models/houses')
+const Tweet = require('../models/tweets')
 
 //CONTROLLING
 
 module.exports = {
   //get all
   getDatas: (req, res) => {
-    House.find({}, (err, data) => {
+    Tweet.find({}, (err, data) => {
       if (err) res.status(400).json({ 'error': `Error: ${err}` })
       if (!data) res.status(404).json({ 'message': 'Failed to get all' })
       res.status(200).json(data)
@@ -16,14 +16,11 @@ module.exports = {
 
   //post one
   postData: (req, res) => {
-    const house = {
-      name: req.body.name,
-      price: req.body.price,
-      rooms: req.body.rooms,
-      address: req.body.address,
-      image: req.body.image
+    const tweet = {
+      tweet: req.body.tweet,
+      user: "@tevinstein"
     }
-    House.create(house, (err, data) => {
+    Tweet.create(tweet, (err, data) => {
       if (err) res.status(400).json({ 'error': `Error: ${err}` })
       if (!data) res.status(304).json({ 'message': 'Failed to post' })
       res.status(200).json({'message': 'Add data successful',data})
@@ -32,7 +29,7 @@ module.exports = {
 
   //get one
   getData: (req, res) => {
-    House.findOne({
+    Tweet.findOne({
       _id: req.params.id
     }, (err, data) => {
       if (err) res.status(400).json({ 'error': `Error: ${err}` })
@@ -43,7 +40,7 @@ module.exports = {
 
   //delete one
   deleteData: (req, res) => {
-    House.findOneAndRemove({
+    Tweet.findOneAndRemove({
       _id: req.params.id
     }, (err, data) => {
       if (err) res.status(400).json({ 'error': `Error: ${err}` })
@@ -53,23 +50,20 @@ module.exports = {
   },
 
   //update one
-  updateData: (req, res) => {
-    House.findOneAndUpdate({
-      _id: req.params.id
-    }, {
-      name: req.body.name,
-      price: req.body.price,
-      rooms: req.body.rooms,
-      address: req.body.address,
-      image: req.body.image
-    }, {
-      new: true
-      //use below to add new if data doesn't exist
-      //upsert: true 
-    }, (err, data) => {
-      if (err) res.status(400).json({ 'error': `Error: ${err}` })
-      if (!data) res.status(404).json({ 'message': 'Failed to update' })
-      res.status(200).json({'message': 'Edit data successful',data})
-    })
-  }
+  // updateData: (req, res) => {
+  //   Tweet.findOneAndUpdate({
+  //     _id: req.params.id
+  //   }, {
+  //     tweet: req.body.tweet,
+  //     user: "@tevinstein"
+  //   }, {
+  //     new: true
+  //     //use below to add new if data doesn't exist
+  //     //upsert: true 
+  //   }, (err, data) => {
+  //     if (err) res.status(400).json({ 'error': `Error: ${err}` })
+  //     if (!data) res.status(404).json({ 'message': 'Failed to update' })
+  //     res.status(200).json({'message': 'Edit data successful',data})
+  //   })
+  // }
 }
