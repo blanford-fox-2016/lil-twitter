@@ -127,5 +127,5 @@ var app = new Vue({
   }
 })
 
-setTimeout(function(){app.loadMprits()}, 1000);
+app.loadMprits();
 app.checkAuth();
