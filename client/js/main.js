@@ -45,6 +45,7 @@ var app = new Vue({
       })
       .then(function (response) {
         app.mprits.unshift(response.data)
+        app.clearModel()
       })
       .catch(function(error) {
         console.log(error);
@@ -71,6 +72,7 @@ var app = new Vue({
       .then(function(response) {
         alert('Your registration was successful!')
         app.regstat = true
+        app.clearModel()
       })
       .catch(function(error) {
         console.log(error);
@@ -90,6 +92,7 @@ var app = new Vue({
           localStorage.setItem('ses_name', response.data.name)
           localStorage.setItem('ses_ava', response.data.avatar_url)
           app.checkAuth()
+          app.clearModel()
         } else {
           app.auth_failed=true;
         }
@@ -123,6 +126,14 @@ var app = new Vue({
     },
     falseauthfailed: function() {
       app.auth_failed = false;
+    },
+    clearModel: function(){
+      app.name = '';
+      app.username = '';
+      app.ava = '';
+      app.content = '';
+      app.email = '';
+      app.password = '';
     }
   }
 })
