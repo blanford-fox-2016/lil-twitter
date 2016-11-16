@@ -42,11 +42,21 @@ module.exports = {
     },
 
     getTwitRecent: (req, res) => {
-
+        Twit.find({}, {}, {
+            limit: 50
+        }, (err, data) => {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     getTwitById: (req, res) => {
-
+        Twit.findOne({
+            _id: req.params.id
+        }, (err, data) => {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     getTwitByHashtag: (req, res) => {
