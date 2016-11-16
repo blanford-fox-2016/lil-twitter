@@ -52,7 +52,7 @@ let editUser = (req, res) => {
 let deleteUser = (req, res) => {
   console.log(`params: ${req.params.id}`);
   User.findOneAndRemove({
-    userId : req.params.id
+    _id : req.params.id
   }, (err, deleted_user) => {
     if(err) res.status(400).json({'error': 'Error: ${err}'})
     if(!deleted_user) res.status(404).json({'message': 'Failed to delete user'})

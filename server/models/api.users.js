@@ -11,10 +11,11 @@ let UsersSchema = new Schema({
   },
   password : {
     type      : String,
-    requires  : true,
+    required  : true,
     lowercase : true,
     trim      : true
-  }
+  },
+  avatar_url: String
 })
 
 UsersSchema.plugin(passportLocalMonggose)

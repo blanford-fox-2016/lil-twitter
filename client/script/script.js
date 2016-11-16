@@ -20,7 +20,43 @@ $(document).ready(function(){
     e.preventDefault()
     processRegister()
   })
+
+  // process login
+  $('#btn_login').on('click', function(e){
+    e.preventDefault()
+    processLogin()
+  })
+
+  //process logout
+  $('#logout').on('click', function(e){
+    e.preventDefault()
+    processLogout()
+  })
 })
+
+function processLogout(){
+  localStorage.removeItem('token')
+  console.log(localStorage.getItem('token'));
+  window.location = 'index.html'
+}
+
+function processLogin(){
+  var data_login_user = {
+    username: $('#username').val(),
+    password: $('#password').val()
+  }
+  $.post({
+    url: 'http://localhost:3000/api/users/login',
+    data: data_login_user,
+    success: function(new_user){
+      console.log(new_user);
+      localStorage.setItem('token', new_user.token)
+      console.log(localStorage.getItem('token'));
+      window.location = 'recent_home.html'
+    }
+  })
+
+}
 
 function processRegister(){
   var data_new_user = {
@@ -34,7 +70,7 @@ function processRegister(){
       console.log(new_user);
       localStorage.setItem('token', new_user.token)
       console.log(localStorage.getItem('token'));
-      window.location = 'index.html'
+      window.location = 'recent_home.html'
     }
   })
 }
