@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/api/twit', routes);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
