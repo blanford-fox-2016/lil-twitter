@@ -1,0 +1,23 @@
+{
+  "name": "client-interactive-shopping-cart",
+  "homepage": "https://github.com/blanford-fox-2016/interactive-shopping-cart",
+  "authors": [
+    "Ahyana Rizky Pratama <ahyana.rizky@gmail.com>"
+  ],
+  "description": "client for iSC",
+  "main": "index.html",
+  "keywords": [
+    "clent"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

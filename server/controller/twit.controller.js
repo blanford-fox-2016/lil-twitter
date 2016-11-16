@@ -4,7 +4,7 @@ const Twit = require('../models/twit.model')
 
 module.exports = {
     getRecentTwit: function(req, res) {
-        Twit.find({}).sort({ date: 'desc' }).exec(function(err, data) {
+        Twit.find({}).sort({ twitId: 'desc' }).exec(function(err, data) {
             if (err) {
                 res.json({ message: `Error : ${err}` })
             } else {
@@ -37,8 +37,8 @@ module.exports = {
         Twit.create({
             avatar_url: 'http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/38/38559df760a478e153188b932d070477ae94d7c6_full.jpg',
             content: req.body.content,
-            username: req.body.username,
-            name: req.body.name,
+            username: 'felixthebluecat',
+            name: 'Felix',
             hashtag: req.body.hashtag
         }, function(err, data) {
             if (err) {
