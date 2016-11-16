@@ -13,10 +13,10 @@ router.get('/tweets/recents', Controller.list)
 // Get all tweet by hastag
 router.get('/tweets/search/:hastag', Controller.findHastag)
 
-// POST a new tweet
+// POST a new tweetß
 router.post('/tweets', Controller.generate)
 
 // Get the most popular tweet
-router.get('/tweets/hastags/popular', Controller.findPopular)
+//router.get('/tweets/hastags/popular', Controller.findPopular)
 
 module.exports = router;
