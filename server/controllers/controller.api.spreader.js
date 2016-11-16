@@ -35,5 +35,5 @@ let doFindHashtag = (req, res) => {
 module.exports = {
   doList,
   doGenerate,
-  dofFindHashtag
+  doFindHashtag
 }
