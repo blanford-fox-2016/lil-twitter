@@ -72,11 +72,18 @@ module.exports = {
     },
 
     createTwit: (req, res) => {
+        let tempPost = req.body.content.split(" ")
+        let tempArr = []
+
+        for (let i = 0; i < tempPost.length; i++) {
+            if (tempPost[i][0] === '#') tempArr.push(tempPost[i].slice(1))
+        }
+
         const twit = {
             avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
             content: req.body.content,
             username: req.body.username,
-            hashtag_names: ['apa', 'aja']
+            hashtag_names: tempArr
         }
 
         Twit.create(twit, (err, data) => {

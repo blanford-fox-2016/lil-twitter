@@ -41,15 +41,10 @@ function notLoginNav() {
     $('#userNav').replaceWith(nav)
 }
 
-function getAllTwit() {
-    $.ajax({
-        url: `${SERVER_URL}/recent`,
-        success: function (data) {
-
-
-            let twit = []
-            for (let i = 0; i < data.length; i++) {
-                twit.push(`
+function getTwit(data) {
+    let twit = []
+    for (let i = 0; i < data.length; i++) {
+        twit.push(`
                 <div class="row" id="rowTwit${data[i]._id}">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div class="panel panel-default">
@@ -63,15 +58,33 @@ function getAllTwit() {
                                 <div class="col-sm-10">
                                     <h5>${data[i].username}</h5>
                                     <p>${data[i].content}</p>
+                                    <p>
+                                    `)
+        for (let j = 0; j < data[i].hashtag_names.length; j++) {
+            twit.push(`
+                ${data[i].hashtag_names[j]},
+`)
+        }
+
+
+        twit.push(`
+                        </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 `)
-            }
+    }
 
-            rowOfTwits.append(twit.join(""))
+    rowOfTwits.html(twit.join(""))
+}
+
+function getAllTwit() {
+    $.ajax({
+        url: `${SERVER_URL}/recent`,
+        success: function (data) {
+            getTwit(data)
         }
     })
 }
@@ -116,6 +129,13 @@ function updateViewAfterCreate(data) {
                         <div class="col-sm-10">
                             <h5>${data.username}</h5>
                             <p>${data.content}</p>
+                            <p>
+                            `
+                            for (let i = 0; i < data.hashtag_names.length; i++) {
+                                html += `${data.hashtag_names[i]}, `
+
+                            }
+    html +=             `</p>
                         </div>
                     </div>
                 </div>
@@ -194,3 +214,24 @@ $(document).on('click', 'a[name="logoutUser"]', function () {
     Auth.deauthenticateUser()
     notLoginNav()
 })
+
+
+$(document).on('click', 'button[name=buttonSearch]', function (e) {
+    e.preventDefault()
+    let search = $('input[name="search"]').val()
+    getSearch(search)
+})
+
+function getSearch(search) {
+    $.ajax({
+        url: `${SERVER_URL}/search?q=${search}`,
+        method: 'get',
+        success: function (data) {
+            updateViewAfterSearch(data)
+        }
+    })
+}
+
+function updateViewAfterSearch(data) {
+    getTwit(data)
+}
