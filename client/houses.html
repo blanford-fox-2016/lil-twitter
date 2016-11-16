@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Online House Selling</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./libraries/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://use.fontawesome.com/5b4025bff4.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">OHS</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="houses.html">Home</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div id="main-content">
+        <div class="container">
+            <!-- Alert -->
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2" id="alert-message">
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content" style="background: rgba(255,255,255,0.9); padding: 10px 10px 5px 10px">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title" style="color:#5E5F5B;"><span class="fa fa-pencil"></span> Edit House</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <form id="edit-house-form">
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="name" type="text">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="price" type="text">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="rooms" type="text">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="image" type="text">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input id="pac-input-2" class="controls form-control" name="address" type="text" placeholder="Search Address">
+                                        <div id="map-2"></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" id="process-edit-house" onclick="processEditData(this,event)" class="btn btn-default btn-block">Edit House</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item list -->
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1" style="background: #971A1E; padding: 20px 20px 20px 20px">
+                    <h1>MY HOUSES</h1>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" style="background: rgba(0,0,0,0.1); padding: 20px 20px 5px 20px">
+                            <div class="form-group row">
+                                <form id="add-house-form">
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="name" type="text" placeholder="Enter name">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="price" type="text" placeholder="Enter price">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="rooms" type="text" placeholder="Enter rooms">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input class="form-control" name="image" type="text" placeholder="Enter image URL">
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom: 5px">
+                                        <input id="pac-input" class="controls form-control" name="address" type="text" placeholder="Search Address">
+                                        <div id="map"></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-lg btn-default btn-block"><span class="fa fa-plus"></span> Add House</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="house-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./libraries/jquery-3.1.1.min.js"></script>
+<script src="./libraries/bootstrap.min.js"></script>
+<script type="text/javascript" src="./javascripts/script.houses.js"></script>
+<!-- google maps stuff -->
+<script type="text/javascript" src="./javascripts/script.google-map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzFl4SUB_PmLP9SQ0tWEjXhNbQQNW1w0I&libraries=places&callback=initAutocomplete" async defer></script>
+
+</html>
