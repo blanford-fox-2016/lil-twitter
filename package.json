@@ -1,0 +1,27 @@
+{
+  "name": "lil-twitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon server/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blanford-fox-2016/lil-twitter.git"
+  },
+  "author": "ajilantang <ajilantang@gmail.com> (http://github.com/ajilantang)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blanford-fox-2016/lil-twitter/issues"
+  },
+  "homepage": "https://github.com/blanford-fox-2016/lil-twitter#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.8"
+  }
+}
