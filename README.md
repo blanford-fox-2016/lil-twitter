@@ -1,10 +1,6 @@
 # Spreader
 
-Inspired by Twitter, Spreader is a simple micro-blogging platform that's really easy to use. Spreader is build with :
-* Express
-* MongoDB
-* JQuery
-* Bootstrap
+Inspired by Twitter, Spreader is a simple micro-blogging platform that's really easy to use.
 
 ## Mockup
 ```
