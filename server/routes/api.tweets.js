@@ -36,6 +36,6 @@ router.delete('/', controller.deleteAllTweets);
   * Search a tweet by hashtag
   * controller's function : searchTweetByHashTag
 */
-router.get('/:hashtag', controller.searchTweetByHashTag);
+router.get('/search/:hashtag', controller.searchTweetByHashTag);
 
 module.exports = router;

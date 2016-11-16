@@ -87,13 +87,14 @@ let tweetSchema = new Schema{
 ## API
 
 Default development port and host : http://localhost:3000/
-| Routes           | HTTP   | Description                          |
-|------------------|--------|--------------------------------------|
-| /api/tweets      | GET    | recent tweet (maximal 50 tweets)     |
-| /api/tweets      | POST   | process new tweet                    |
-| /api/tweets/:id  | DELETE | delete a tweet                       |
-| /api/tweets/seed | POST   | seed data into tweets collection     |
-| /api/tweets/     | DELETE | delete all data in tweets collection |
+| Routes                        | HTTP   | Description                          |
+|-------------------------------|--------|--------------------------------------|
+| /api/tweets                   | GET    | recent tweet (maximal 50 tweets)     |
+| /api/tweets                   | POST   | process new tweet                    |
+| /api/tweets/:id               | DELETE | delete a tweet                       |
+| /api/tweets/seed              | POST   | seed data into tweets collection     |
+| /api/tweets/                  | DELETE | delete all data in tweets collection |
+| /api/tweets/search/:hashtag   | GET    | Search a tweet by hashtag            |
 
 ## File's Structure
 
