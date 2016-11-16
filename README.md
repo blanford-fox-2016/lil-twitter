@@ -15,6 +15,6 @@ Mpritter is a simple micro-blogging like twitter, it's really simple and easy to
 ### File Structures
 
 ### Screenhots
-![Timeline](http://imgur.com/LGsZ7jC)
-![Post New Mprit](http://imgur.com/QX6oC58)
-![Delete Mprit](http://imgur.com/ShFnoZW)
+![Timeline](http://i.imgur.com/LGsZ7jC.png)
+![Post New Mprit](http://i.imgur.com/QX6oC58.png)
+![Delete Mprit](http://i.imgur.com/ShFnoZW.png)
