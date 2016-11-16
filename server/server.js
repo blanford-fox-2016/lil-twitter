@@ -17,8 +17,18 @@ const express = require('express'),
     //Data and modeling
     mongoose = require('mongoose'),
 
+    //JSONWebToken
+    jwt = require('jsonwebtoken'),
+
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+
     //App modules
-    apiTweets = require('./routes/api.tweets')
+    apiTweets = require('./routes/api.tweets'),
+    apiUsers = require('./routes/api.users'),
+
+    //User model
+    User = require('./models/users')
 
 //==========APP CONFIGURATION==========
 
@@ -31,9 +41,13 @@ app.use(cors())
 mongoose.Promise = global.Promise // native Node.js promise
 mongoose.connect(process.env.MONGODB_URI)
 
+//Passport Configuration
+passport.use(new LocalStrategy(User.authenticate()))
+
 //==========REGISTER ROUTES==========
 
-app.use('/api', apiTweets)
+app.use('/api/tweets', apiTweets)
+app.use('/api/users', apiUsers)
 
 //==========RUN THE APP==========
 

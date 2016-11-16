@@ -3,10 +3,10 @@ const express = require('express'),
     controller = require('../controllers/api.tweets')
 
 // ROUTING
-router.get('/tweets', controller.getDatas)
-router.post('/tweets', controller.postData)
-router.get('/tweets/:id', controller.getData)
-router.delete('/tweets/:id', controller.deleteData)
+router.get('/', controller.getDatas)
+router.post('/', controller.postData)
+router.get('/:id', controller.getData)
+router.delete('/:id', controller.deleteData)
 // router.put('/tweets/:id', controller.updateData)
 
 module.exports = router
