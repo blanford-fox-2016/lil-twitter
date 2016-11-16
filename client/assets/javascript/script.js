@@ -6,7 +6,8 @@ var app = new Vue({
     username: '',
     avatar_url: '',
     content: '',
-    top:''
+    top:'',
+    hastags:''
   },
   methods: {
     list: function() {
@@ -23,7 +24,8 @@ var app = new Vue({
         name: app.name,
         username: app.username,
         avatar_url: app.avatar_url,
-        content: app.content
+        content: app.content,
+        hastags: app.hastags,
       })
       .then(function (tweet) {
         app.tweets.unshift(tweet.data)
@@ -44,4 +46,3 @@ var app = new Vue({
 })
 
 app.list();
-app.postTweet();

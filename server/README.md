@@ -56,7 +56,7 @@ const tweetSchema = new Schema ({
 | Method   |           End Point                  |      Description       |
 |----------|:------------------------------------:|-----------------------:|
 | GET      |  /api/tweets/recents                 | get all tweets         |
-| GET      |  /api/tweets/search/:hastag          | get all tweets         |
+| GET      |  /api/tweets/search/:hastag          | get all tweets with hastag       |
 | POST     |  /api/tweets                         | Post a single tweet    |
 | GET      |  /api/tweets/hastags/popular         | Find the top ten tweet |
 

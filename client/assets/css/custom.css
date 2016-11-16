@@ -1,11 +1,3 @@
-.tweet-button {
-  margin-top: 5%;
-}
-
-.avatar img {
-  display: inline-block;
-}
-
-.content-description {
-  vertical-align: middle;
+.jumbotron {
+  height: 100%;
 }
