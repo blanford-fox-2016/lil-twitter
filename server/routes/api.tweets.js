@@ -24,7 +24,7 @@ router.delete('/:id', controller.deleteOneTweet);
   * seed data into tweets collection
   * controller's function : seedDataTweets
 */
-router.post('/', controller.seedDataTweets);
+router.post('/seed', controller.seedDataTweets);
 
 /*
   * delete all data in tweets collection

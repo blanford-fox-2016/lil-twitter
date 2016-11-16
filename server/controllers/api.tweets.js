@@ -30,6 +30,7 @@ let getRecentTweets = (req, res) => {
   * @apiSuccess respond JSON new_data
 */
 let postNewTweet = (req, res) => {
+  console.log(req.body);
   Tweet.create({
     avatar_url: req.body.avatar_url,
     content: req.body.content,
@@ -97,7 +98,7 @@ let deleteAllTweets = (req, res) => {
 }
 
 /*
-  * @api {GET} /api/tweets/search?hashtag=""
+  * @api {GET} /api/tweets/search?hashtag=value
   * @api purpose get one tweet
   * @apiName searchTweetByHashTag
   * @apiGroup tweets
@@ -105,7 +106,8 @@ let deleteAllTweets = (req, res) => {
   * @apiSuccess respond JSON one tweet
 */
 let searchTweetByHashTag = (req, res) => {
-  Tweet.findOne({
+  console.log(req.query.hashtag);
+  Tweet.find({
     hashtag: req.query.hashtag
   }, (err, search_data) => {
     if(err) res.status(400).json({'error': `Error : ${err}`})
