@@ -2,13 +2,10 @@ const Auth = {
     authenticateUser: (data) => {
         if (data.status === 'error') console.log('No account:', data)
         Auth.deauthenticateUser()
-        console.log('data:', data)
         localStorage.setItem('token', data.token)
-        console.log('token:', localStorage.getItem('token'))
         window.location = '/'
     },
     isUserAuthenticated: () => {
-        console.log('token:', localStorage.getItem('token'))
         return localStorage.getItem('token') !== null
     },
     deauthenticateUser: () => {
@@ -37,10 +34,7 @@ function signIn(e) {
         url: 'http://localhost:3000/api/users/login',
         data: data,
         success: function(data) {
-            //console.log(data);
             localStorage.setItem('token', data.token)
-                //console.log(localStorage.getItem('token'));
-                //console.log(Auth.getUser().username);
             if (Auth.getUser().username) {
                 window.location = 'home.html'
             } else {
@@ -58,15 +52,14 @@ function signUp(e) {
     var data = {
         username: $('#sign-up-form input[name=username]').val(),
         email: $('#sign-up-form input[name=email]').val(),
-        password: $('#sign-up-form input[name=password]').val()
+        password: $('#sign-up-form input[name=password]').val(),
+        avatar: $('#sign-up-form input[name=avatar]').val()
     }
     $.post({
         url: 'http://localhost:3000/api/users',
         data: data,
         success: function(data) {
-            //console.log(data);
             localStorage.setItem('token', data.token)
-            //console.log(localStorage.getItem('token'));
             window.location = 'home.html'
         }
     })
@@ -74,7 +67,6 @@ function signUp(e) {
 
 function logoutUser() {
     localStorage.removeItem('token')
-    console.log(localStorage.getItem('token'));
     window.location = 'index.html'
 }
 

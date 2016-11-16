@@ -26,7 +26,8 @@ module.exports = {
   postData: (req, res) => {
     const tweet = {
       tweet: req.body.tweet,
-      user: "@tevinstein"
+      user: req.body.user,
+      avatar: req.body.avatar
     }
     Tweet.create(tweet, (err, data) => {
       if (err) res.status(400).json({ 'error': `Error: ${err}` })

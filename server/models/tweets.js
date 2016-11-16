@@ -4,7 +4,8 @@ const mongoose = require('mongoose'),
 const Tweet = new Schema({
     tweet: String,
     user: String,
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    avatar: String
 }, {
     timestamps: true
 })

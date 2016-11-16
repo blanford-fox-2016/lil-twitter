@@ -3,14 +3,6 @@ const passport = require('passport')
 const User = require('../models/users')
 const jwt = require('jsonwebtoken')
 
-/*
-  * @api {get} /api/users
-  * @api purpose get all users
-  * @apiName allUsers
-  * @apiGroup users
-  *
-  * @apiSuccess show all user's username {String}
-*/
 let allUsers = (req, res) => {
   User.find({}, (err, users) => {
     if(err) res.status(400).json({'error': `Error: ${err}`})
@@ -20,14 +12,6 @@ let allUsers = (req, res) => {
   })
 }
 
-/*
-  * @api {put} /api/users/:id
-  * @api purpose put a user
-  * @apiName editUser
-  * @apiGroup users
-  *
-  * @apiSuccess edit a user
-*/
 let editUser = (req, res) => {
   User.findOneAndUpdate({
     _id : req.params.id
@@ -42,14 +26,6 @@ let editUser = (req, res) => {
   })
 }
 
-/*
-  * @api {delete} /api/users/:id
-  * @api purpose delete a user
-  * @apiName deleteUser
-  * @apiGroup users
-  *
-  * @apiSuccess delete a user
-*/
 let deleteUser = (req, res) => {
   console.log(`params: ${req.params.id}`);
   User.findOneAndRemove({
@@ -62,21 +38,14 @@ let deleteUser = (req, res) => {
   })
 }
 
-/*
-  * @api {POST} /api/users/register_local
-  * @api purpose to register a user
-  * @apiName registerLocalUser
-  * @apiGroup users
-  *
-  * @apiSuccess register a user
-*/
 let registerLocalUser = (req, res, next) => {
   console.log(`register`);
   console.log(req.body);
 
   User.register(new User({
     username : req.body.username,
-    email : req.body.email
+    email : req.body.email,
+    avatar : req.body.avatar
   }),
   req.body.password,
   (err, new_user) => {
@@ -95,21 +64,14 @@ let registerLocalUser = (req, res, next) => {
       return res.status(200).json({
         token: jwt.sign({
           sub: user._id,
-          username: user.username
+          username: user.username,
+          avatar: user.avatar
         }, 'secret')
       })
     })(req, res, next)
   })
 }
 
-/*
-  * @api {POST} /api/users/login
-  * @api purpose to login a user
-  * @apiName apiSuccess
-  * @apiGroup users
-  *
-  * @apiSuccess login a user
-*/
 let loginUser = (req, res, next) => {
   passport.authenticate('local',
   {},
