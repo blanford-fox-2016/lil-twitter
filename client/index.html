@@ -7,7 +7,6 @@
     <script type="text/javascript" src="assets/bootstrap/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="assets/bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Own Library -->
-    <script type="text/javascript" src="assets/javascript/script.js"></script>
 
     <link rel="stylesheet" href="assets/bootstrap/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title">
     <!-- Own CSS -->
@@ -15,6 +14,24 @@
 
   </head>
   <body>
-
+    <div id="app">
+      <div class="container" v-for="tweet in tweets">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="avatar">
+              <img :src="tweet.avatar_url" alt="" />
+              {{tweet.username}}
+            </div>
+          </div>
+          <div class="col-md-6">
+            {{tweet.content}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Script required to run view and axios -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/script.js"></script>
   </body>
 </html>
