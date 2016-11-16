@@ -62,7 +62,10 @@ module.exports = {
     },
 
     deleteAllTwit: (req, res) => {
-
+        Twit.remove((err) => {
+            if (err) res.json(err)
+            else res.json("All Twit Deleted")
+        })
     },
 
     deleteTwitById: (req, res) => {

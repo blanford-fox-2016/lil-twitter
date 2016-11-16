@@ -4,5 +4,6 @@ const twitController = require('../controllers/controllers.api.twit')
 
 router.get('/seed', twitController.twitSeed)
 router.post('/', twitController.createTwit)
+router.delete('/', twitController.deleteAllTwit)
 
 module.exports = router;
