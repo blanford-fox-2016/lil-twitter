@@ -43,6 +43,9 @@ module.exports = {
 
     getTwitRecent: (req, res) => {
         Twit.find({}, {}, {
+            sort: {
+                updatedAt: -1
+            },
             limit: 50
         }, (err, data) => {
             if (err) res.json(err)
@@ -60,8 +63,8 @@ module.exports = {
     },
 
     getTwitByHashtag: (req, res) => {
-        Twit.findOne({
-            hashtag_names: req.params.hashtag
+        Twit.find({
+            hashtag_names: req.query.q
         }, (err, data) => {
             if (err) res.json(err)
             else res.json(data)

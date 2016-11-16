@@ -9,6 +9,51 @@
 <link rel="stylesheet" href="style.css">
 <body>
 
+<div id="modalLogin" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">username:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="usernameLogin">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="passwordLogin">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label><input type="checkbox"> Remember me</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -26,7 +71,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#modalLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>
@@ -39,22 +84,16 @@
                 <div class="form-group">
                     <img class="img-responsive col-sm-2" src="http://www.littlestarsplayschool.com/images/1466407606547378dummy.png" alt="">
                     <textarea name="twit" id="inputTwit" rows="3" class="col-sm-10" placeholder="What's going on?"></textarea>
+                    <button id="buttonCreateTwit" class="btn btn-success">Create</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-            <div class="panel panel-default">
-                <div class="panel-title">
+    <br>
 
-                </div>
-                <div class="panel-body">
+    <div id="rowOfTwits">
 
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>
@@ -63,6 +102,6 @@
 
 <script src="lib/jquery/dist/jquery.min.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="style.css"></script>
+<script src="script.js"></script>
 
 </html>
