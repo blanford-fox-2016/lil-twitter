@@ -17,6 +17,6 @@ router.get('/tweets/search/:hastag', Controller.findHastag)
 router.post('/tweets', Controller.generate)
 
 // Get the most popular tweet
-router.get('/tweets/hastags/popular', Controller.findPopular)
+//router.get('/tweets/hastags/popular', Controller.findPopular)
 
 module.exports = router;
