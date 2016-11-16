@@ -1,0 +1,22 @@
+{
+  "name": "client",
+  "homepage": "https://github.com/blanford-fox-2016/lil-twitter",
+  "authors": [
+    "Dharmadi Tanamas <dharmadi93@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jwt-decode": "^2.1.0"
+  }
+}
