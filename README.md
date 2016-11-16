@@ -61,7 +61,7 @@ let tweetSchema = new Schema{
   "avatar_url"  : String,
   "content"     : String,
   "username"    : String,
-  "hastag"      : [
+  "hashtag"      : [
     "type"      : String
   ]
 }, {
