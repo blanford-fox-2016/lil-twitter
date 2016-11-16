@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css" media="screen" title="no title">
   </head>
   <body>
+  <div id='app'>
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -24,16 +25,17 @@
 
           <div class="navbar-form navbar-right">
             <div class="form-group">
-              <button type="button" class="btn btn-info" name="authBtn" data-target="#authModal" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> Sign Up/In</button>
+              <button v-if='!authenticated' type="button" class="btn btn-info" name="authBtn" data-target="#authModal" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> Sign Up/In</button>
+
+              <button v-if='authenticated' type="button" class="btn btn-info" v-on:click="logout"><i class="glyphicon glyphicon-user"></i> Log Out</button>
             </div>
           </div>
         </div>
-      </div>
     </nav>
 
-    <div id="app" class="container">
+    <div class="container">
 
-      <div class="well well-sm">
+      <div class="well well-sm" v-if='authenticated'>
         <!-- <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input v-model="searchtitle" type="text" class="form-control" placeholder="Search by title">
@@ -54,8 +56,8 @@
       <!-- FORM ADD NEW HOUSE -->
       <div class="collapse" id="addNewForm">
         <div class="well">
-          <h3>Add New House</h3>
-          <div class="form-group col-md-6" style="padding-left:0px">
+          <h3>Add New Mprit</h3>
+          <!-- <div class="form-group col-md-6" style="padding-left:0px">
             <label class="control-label" for="name">Name</label>
             <input class="form-control" v-model="name" type="text" placeholder="Enter the your name">
           </div>
@@ -66,10 +68,10 @@
           <div class="form-group">
             <label class="control-label" for="ava">Avatar</label>
             <input class="form-control" v-model="ava" type="text" placeholder="Enter the link of your avatar">
-          </div>
+          </div> -->
           <div class="form-group">
             <label class="control-label" for="content">Your mprit</label>
-            <textarea class="form-control" v-model="content" placeholder="Enter the address"></textarea>
+            <textarea class="form-control" v-model="content" placeholder="Enter the address" required></textarea>
           </div>
           <div class="form-group">
             <button type="button" name="button" class="btn btn-info" v-on:click="postNewMprit" data-toggle="collapse" data-target="#addNewForm" aria-expanded="false" aria-controls="addNewForm">Submit <i class="glyphicon glyphicon-send"></i></button>
@@ -80,7 +82,7 @@
       <!-- SINGLE HOUSE -->
       <div v-for="mprit in mprits" v-bind:id="'mprit_'+mprit._id" class="panel panel-default">
         <div class="panel-body">
-          <button type="button" class="close" data-toggle="modal" v-bind:data-target="'#deleteMprit_'+mprit._id"><span aria-hidden="true" class="glyphicon glyphicon-trash"></span></button>
+          <button v-if='authenticated' type="button" class="close" data-toggle="modal" v-bind:data-target="'#deleteMprit_'+mprit._id"><span aria-hidden="true" class="glyphicon glyphicon-trash"></span></button>
 
           <div class="col-md-2">
             <img v-bind:src="mprit.avatar_url" class="img-responsive" alt="" />
@@ -111,37 +113,41 @@
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="signup">
-                  <div class="form-group col-md-6" style="padding-left:0px">
+                  <div class="form-group" style="padding-left:0px">
                     <label class="control-label" for="name">Name</label>
-                    <input class="form-control" v-model="name" type="text" placeholder="Enter the your name">
+                    <input class="form-control" v-model="name" type="text" placeholder="Enter the your name" required>
                   </div>
-                  <div class="form-group col-md-6" style="padding-left:0px">
+                  <div class="form-group" style="padding-left:0px">
                     <label class="control-label" for="email">Email</label>
-                    <input class="form-control" v-model="email" type="emailRegister" placeholder="Enter the email">
+                    <input class="form-control" v-model="email" type="emailRegister" placeholder="Enter the email" required>
                   </div>
-                  <div class="form-group col-md-6" style="padding-left:0px">
+                  <div class="form-group" style="padding-left:0px">
                     <label class="control-label" for="username">Username</label>
-                    <input class="form-control" v-model="username" type="text" placeholder="Enter the your username">
+                    <input class="form-control" v-model="username" type="text" placeholder="Enter the your username" required>
                   </div>
-                  <div class="form-group col-md-6" style="padding-left:0px">
+                  <div class="form-group" style="padding-left:0px">
                     <label class="control-label" for="password">Password</label>
-                    <input class="form-control" v-model="password" type="password" placeholder="Enter the password">
+                    <input class="form-control" v-model="password" type="password" placeholder="Enter the password" required>
+                  </div>
+                  <div class="form-group" style="padding-left:0px">
+                    <label class="control-label" for="ava">Avatar URL</label>
+                    <input class="form-control" v-model="ava" type="text" placeholder="Enter the your avatar_url" required>
                   </div>
                   <div class="form-group">
-                    <button type="button" name="button" class="btn btn-info" v-on:click="postNewMprit" data-toggle="collapse" data-target="#addNewForm" aria-expanded="false" aria-controls="addNewForm">Sign Up <i class="glyphicon glyphicon-log-in"></i></button>
+                    <button type="button" name="button" class="btn btn-info" v-on:click="register" data-dismiss="modal">Sign Up <i class="glyphicon glyphicon-log-in"></i></button>
                   </div>
                 </div>
                 <div class="tab-pane fade" id="signin">
                   <div class="form-group col-md-6" style="padding-left:0px">
                     <label class="control-label" for="username">Username</label>
-                    <input class="form-control" v-model="username" type="text" placeholder="Enter the your username">
+                    <input class="form-control" v-model="username" type="text" placeholder="Enter the your username" required>
                   </div>
                   <div class="form-group col-md-6" style="padding-left:0px">
                     <label class="control-label" for="password">Password</label>
-                    <input class="form-control" v-model="password" type="password" placeholder="Enter the password">
+                    <input class="form-control" v-model="password" type="password" placeholder="Enter the password" required>
                   </div>
                   <div class="form-group">
-                    <button type="button" name="button" class="btn btn-info" v-on:click="postNewMprit" data-toggle="collapse" data-target="#addNewForm" aria-expanded="false" aria-controls="addNewForm">Sign In <i class="glyphicon glyphicon-log-in"></i></button>
+                    <button type="button" name="button" class="btn btn-info" v-on:click="login" data-dismiss="modal">Sign In <i class="glyphicon glyphicon-log-in"></i></button>
                   </div>
                 </div>
               </div>
@@ -169,6 +175,7 @@
       </div>
 
     </div>
+  </div>
 
     <script src="https://unpkg.com/vue@2.0.5/dist/vue.js" charset="utf-8"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

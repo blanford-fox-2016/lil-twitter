@@ -6,12 +6,20 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const Users = require('./models/Users');
+
 const routes = require('./routes/index');
-const users = require('./routes/users');
-const apiTweets = require('./routes/apiTweets')
+const auth = require('./routes/auth');
+const apiTweets = require('./routes/apiTweets');
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 const cors = require('cors');
+const jwt = require('express-jwt');
 
 const app = express();
+
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
@@ -34,9 +42,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(jwt({
+  secret: 'secret',
+  credentialsRequired: false,
+  getToken: function fromHeaderOrQuerystring (req) {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+        return req.headers.authorization.split(' ')[1];
+    } else if (req.query && req.query.token) {
+      return req.query.token;
+    }
+    return null;
+  }
+}));
+
+//LOCAL STRATEGY
+passport.use(new LocalStrategy(Users.authenticate()));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
 app.use('/api/tweets', apiTweets);
+app.use('/auth', auth);
 // app.use('/users', users);
+passport.serializeUser(Users.serializeUser());
+passport.deserializeUser(Users.deserializeUser());
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
