@@ -3,6 +3,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Twitter = require('../models/models.twitter');
 
+
+
+
+//===============================
+// function to splice tag ======
+//=============================
+let splicetag = (string) => {
+  let preresult = string.split('#')
+  preresult.splice(0,1)
+  return preresult
+}
+
+//====================================================================
+// function to findout maximum properties tag in array of object ====
+//==================================================================
+// let maximum = (obj) => {
+//   return  max = Object.keys(obj).reduce(function(m, k){ return obj[k] > m ? obj[k] : m }, -Infinity);
+// }
+
 //===================
 // create twitt ====
 //=================
@@ -16,7 +35,12 @@ console.log(req.body.tag);
     content          : req.body.content,
     hashtag           :[]
   });
-  tweets.hashtag.push({hastag_name:req.body.tag});
+
+  // push into hashtag every tag ('#') in content
+
+  for (let i =0 ; i < splicetag(req.body.content).length ;i++) {
+    tweets.hashtag.push({hastag_name:splicetag(req.body.content)[i]});
+  }
   tweets.save((err,tweets) => {
       if (err) {
         res.status(404).json({message:" Failed to post new tweets"})
