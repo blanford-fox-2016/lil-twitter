@@ -10,7 +10,7 @@ let tweetSchema = new Schema ({
   names: String,
   avatar : String,
   content : String,
-  createdAt: String,
+  createdAt:  {type: Date, default: Date.now},
   hastags: [String]
 })
 
