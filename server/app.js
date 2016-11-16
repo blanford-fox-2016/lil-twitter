@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const apiTweets = require('./routes/apiTweets')
+const cors = require('cors');
 
 const app = express();
 
@@ -24,6 +25,7 @@ mongoose.connect('mongodb://127.0.0.1/mpritter', (err) => {
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(cors())
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
