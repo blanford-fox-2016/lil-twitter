@@ -1,0 +1,28 @@
+{
+  "name": "spreader-server",
+  "version": "1.0.0",
+  "description": "micro-blogging platform, spreader",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blanford-fox-2016/lil-twitter/tree/ryan"
+  },
+  "keywords": [
+    "twitter",
+    "micro-blogging"
+  ],
+  "author": "Ryan Andhaka <ryan.andhaka@gmail.com> (https://github.com/ryanandhaka)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.8",
+    "mongoose-sequence": "^3.1.0"
+  }
+}
