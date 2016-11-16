@@ -24,26 +24,19 @@
         </div>
 
           <div class="navbar-form navbar-right">
-            <div class="form-group">
-              <button v-if='!authenticated' type="button" class="btn btn-info" name="authBtn" data-target="#authModal" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> Sign Up/In</button>
-
-              <button v-if='authenticated' type="button" class="btn btn-info" v-on:click="logout"><i class="glyphicon glyphicon-user"></i> Log Out</button>
+            <div v-if='!authenticated' class="form-group">
+              <button type="button" class="btn btn-info" name="authBtn" data-target="#authModal" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> Sign Up/In</button>
+            </div>
+            <div v-if='authenticated' class="form-group">
+              <button type="button" class="btn btn-info" v-on:click="logout"><i class="glyphicon glyphicon-user"></i> Log Out</button>
             </div>
           </div>
         </div>
     </nav>
-
+    <br>
     <div class="container">
 
       <div class="well well-sm" v-if='authenticated'>
-        <!-- <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input v-model="searchtitle" type="text" class="form-control" placeholder="Search by title">
-            <p>
-              Search Results for : {{searchtitle}}
-            </p>
-          </div>
-        </form> -->
 
         <div class="pull-right">
           <button id="addNewBtn" type="button" class="btn btn-info" data-toggle="collapse" data-target="#addNewForm" aria-expanded="false" aria-controls="addNewForm">
@@ -54,21 +47,9 @@
       </div>
 
       <!-- FORM ADD NEW HOUSE -->
-      <div class="collapse" id="addNewForm">
+      <div class="collapse" id="addNewForm"  v-if='authenticated'>
         <div class="well">
           <h3>Add New Mprit</h3>
-          <!-- <div class="form-group col-md-6" style="padding-left:0px">
-            <label class="control-label" for="name">Name</label>
-            <input class="form-control" v-model="name" type="text" placeholder="Enter the your name">
-          </div>
-          <div class="form-group col-md-6" style="padding-left:0px">
-            <label class="control-label" for="username">Username</label>
-            <input class="form-control" v-model="username" type="text" placeholder="Enter the username , eg: @mpritter">
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="ava">Avatar</label>
-            <input class="form-control" v-model="ava" type="text" placeholder="Enter the link of your avatar">
-          </div> -->
           <div class="form-group">
             <label class="control-label" for="content">Your mprit</label>
             <textarea class="form-control" v-model="content" placeholder="Enter the address" required></textarea>
@@ -156,7 +137,7 @@
         </div>
       </div>
 
-      <div v-for="mprit in mprits" class="modal fade" v-bind:id="'deleteMprit_'+mprit._id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div v-for="mprit in mprits" class="modal fade" v-bind:id="'deleteMprit_'+mprit._id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  v-if='authenticated'>
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
