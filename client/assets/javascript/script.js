@@ -6,6 +6,7 @@ var app = new Vue({
     username: '',
     avatar_url: '',
     content: '',
+    top:''
   },
   methods: {
     list: function() {
@@ -15,28 +16,32 @@ var app = new Vue({
           app.tweets = tweet.data
           console.log(tweet)})
         .catch((err) => console.log(error))
+    },
+    postTweet: function()  {
+      axios
+      .post('http://localhost:3000/api/tweets',{
+        name: app.name,
+        username: app.username,
+        avatar_url: app.avatar_url,
+        content: app.content
+      })
+      .then(function (tweet) {
+        app.tweets.unshift(tweet.data)
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+    },
+    deleteTweet: function(id) {
+        axios
+          .get("http://localhost:3000/tweets/search/"+hastag)
+          .then((tweet) => {
+            app.top = tweet.data
+          })
+          .catch((err) => console.log(err))
     }
-    // postTweet: function()  {
-    //   axios
-    //   .post('http://localhost:3000/api/tweets',{
-    //     name: app.name,
-    //     username: app.username,
-    //     avatar_url: app.avatar_url,
-    //     content: app.content
-    //   })
-    //   .then(function (tweet) {
-    //     app.mprits.unshift(tweet.data)
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   })
-    // },
-    // }
-
-
-
   }
 })
 
 app.list();
-// app.postTweet();
+app.postTweet();
