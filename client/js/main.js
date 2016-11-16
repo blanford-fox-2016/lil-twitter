@@ -33,7 +33,7 @@ var app = new Vue({
       })
     },
     deleteMprit: function(id) {
-      axios.delete('http://localhost/api/tweets/'+id, {})
+      axios.delete('http://localhost:3000/api/tweets/'+id, {})
       .then(function(response) {
         app.loadMprits()
       })
