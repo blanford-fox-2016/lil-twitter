@@ -12,7 +12,7 @@ const seeder = require('../data/seed.tweets.json')
   *
   * @apiSuccess respond array of object 50 recent tweets
 */
-let getRecentTweets = (req, res){
+let getRecentTweets = (req, res) => {
   Tweet.find({}, (err, all_data) => {
     if(err) res.status(400).json({`error`: `Error : ${err}`})
     if(!all_data) res.status(404).json(`Failed to get recent tweet`)
@@ -29,7 +29,7 @@ let getRecentTweets = (req, res){
   *
   * @apiSuccess respond JSON new_data
 */
-let postNewTweet = (req, res){
+let postNewTweet = (req, res) => {
   Tweet.create({
     avatar_url: req.body.avatar_url,
     content: req.body.content,
@@ -51,7 +51,7 @@ let postNewTweet = (req, res){
   *
   * @apiSuccess respond JSON deleted_data
 */
-let deleteOneTweet = (req, res){
+let deleteOneTweet = (req, res) => {
   Tweet.findOneAndRemove({
     _id: req.params.id
   }, (err, deleted_data) => {
@@ -70,7 +70,7 @@ let deleteOneTweet = (req, res){
   *
   * @apiSuccess respond array of object seeded data
 */
-let seedDataTweets = (req, res){
+let seedDataTweets = (req, res) => {
   Tweet.create(seeder, (err, seed_data) => {
     if(err) res.status(400).json({`error`: `Error : ${err}`})
     if(!seed_data) res.status(404).json(`Failed to seed data tweet`)

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('controllers/api.tweets')
+const controller = require('../controllers/api.tweets')
 /*
   * recent tweet (maximal 50 tweets)
   * controller's function : getRecentTweets
