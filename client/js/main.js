@@ -2,6 +2,7 @@ var app = new Vue({
   el: '#app',
   data: {
     authenticated: false,
+    auth_failed: false,
     mprits: [],
     authmode: 'up',
     //MPRIT
@@ -79,18 +80,17 @@ var app = new Vue({
         password: app.password
       })
       .then(function(response) {
-        console.log(JSON.stringify(response));
-        // app.authenticated = localStorage.setItem('authenticated', true)
-        // app.token = localStorage.setItem('token', response.data.token)
-        // app.ses_username = localStorage.setItem('ses_username', response.data.username)
-        // app.ses_name = localStorage.setItem('ses_name', response.data.name)
-        // app.ses_ava = localStorage.setItem('ses_ava', response.data.avatar_url)
-        localStorage.setItem('authenticated', true)
-        localStorage.setItem('token', response.data.token)
-        localStorage.setItem('ses_username', response.data.username)
-        localStorage.setItem('ses_name', response.data.name)
-        localStorage.setItem('ses_ava', response.data.avatar_url)
-        app.checkAuth()
+        if (response.data.username != undefined) {
+          console.log(JSON.stringify(response));
+          localStorage.setItem('authenticated', true)
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('ses_username', response.data.username)
+          localStorage.setItem('ses_name', response.data.name)
+          localStorage.setItem('ses_ava', response.data.avatar_url)
+          app.checkAuth()
+        } else {
+          app.auth_failed=true;
+        }
       })
       .catch(function(error) {
         console.log(error);

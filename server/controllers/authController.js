@@ -23,18 +23,23 @@ let register = (req, res, next) => {
 }
 
 let login = (req, res, next) => {
-  passport.authenticate('local', (err, user) => {
-    const token = jwt.sign({
-      username: user.username
-    }, 'secret', {expiresIn : 60 * 60});
-    res.json({
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      username: user.username,
-      avatar_url: user.avatar_url,
-      token: token
-    })
+  passport.authenticate('local', {}, (err, user) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const token = jwt.sign({
+        username: user.username
+      }, 'secret', {expiresIn : 60 * 60});
+      res.json({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        avatar_url: user.avatar_url,
+        token: token
+      })
+    }
+
   })(req, res, next)
 }
 
