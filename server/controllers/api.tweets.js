@@ -32,7 +32,7 @@ let getRecentTweets = (req, res) => {
 let postNewTweet = (req, res) => {
   console.log(req.body);
   Tweet.create({
-    avatar_url: req.body.avatar_url,
+    avatar_url: "https://s-media-cache-ak0.pinimg.com/736x/f9/44/98/f944980f424d28501fe6fb8232d844c5.jpg",
     content: req.body.content,
     username: "kenduigraha",
     hashtag: req.body.hashtag
