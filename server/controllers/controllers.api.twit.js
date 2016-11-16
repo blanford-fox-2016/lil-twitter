@@ -6,27 +6,32 @@ module.exports = {
             {
                 avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
                 content: 'content 1',
-                username: 'andi'
+                username: 'andi',
+                hashtag_names: ['andi', 'content']
             },
             {
                 avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
                 content: 'content 2',
-                username: 'budi'
+                username: 'budi',
+                hashtag_names: ['budi', 'content']
             },
             {
                 avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
                 content: 'content 3',
-                username: 'cindy'
+                username: 'cindy',
+                hashtag_names: ['cindy', 'content']
             },
             {
                 avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
                 content: 'content 4',
-                username: 'doni'
+                username: 'doni',
+                hashtag_names: ['doni', 'content']
             },
             {
                 avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
                 content: 'content 5',
-                username: 'eri'
+                username: 'eri',
+                hashtag_names: ['eri', 'content']
             }
         ]
 
@@ -52,7 +57,8 @@ module.exports = {
         const twit = {
             avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
             content: req.body.content,
-            username: 'dharmadi93'
+            username: 'dharmadi93',
+            hashtag_names: ['apa', 'aja']
         }
 
         Twit.create(twit, (err, data) => {
