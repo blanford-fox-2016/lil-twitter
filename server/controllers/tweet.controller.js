@@ -25,7 +25,6 @@ let generate = (req, res) => {
 }
 
 let findHastag = (req, res) => {
-  // console.log(req.params)
   Tweet
     .find({hastags: req.params.hastag})
     .then((tweet) => res.json(tweet))
@@ -37,5 +36,4 @@ module.exports = {
   list,
   generate,
   findHastag
-
 }
