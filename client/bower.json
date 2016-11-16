@@ -1,0 +1,21 @@
+{
+  "name": "client",
+  "homepage": "https://github.com/blanford-fox-2016/lil-twitter",
+  "authors": [
+    "broerjuang <juangwiantoro@gmail.com>"
+  ],
+  "description": "client side",
+  "main": "index.html",
+  "keywords": [
+    "lil",
+    "twit"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
