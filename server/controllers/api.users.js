@@ -111,7 +111,12 @@ let registerLocalUser = (req, res, next) => {
 */
 let loginUser = (req, res, next) => {
   passport.authenticate('local',
-  {},
+  {
+    successRedirect: '/',
+    successFlash: true,
+    failureRedirect: 'index.html',
+    failureFlash: true
+  },
   (err, user, info) => {
       console.log(user)
       if(err){

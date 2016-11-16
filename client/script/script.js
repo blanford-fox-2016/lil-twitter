@@ -83,7 +83,13 @@ function processLogin(){
       console.log(new_user);
       localStorage.setItem('token', new_user.token)
       console.log(localStorage.getItem('token'));
-      window.location = 'recent_home.html'
+      console.log(Auth.getUser().username);
+      if(Auth.getUser().username){
+        window.location = 'recent_home.html'
+      }else{
+        window.location = 'index.html'
+        localStorage.removeItem('token')
+      }
     }
   })
 
@@ -158,6 +164,14 @@ function deleteData(id){
   })
 }
 
+function functionDelete(data){
+  if(Auth.getUser().username == data.username){
+    return `<div class="panel-heading pull-right">
+      <button type="button" onclick="deleteData('${data._id}')">x</button>
+    </div>`
+  }
+}
+
 // show recents tweets
 function showRecents(){
   $.ajax({
@@ -171,9 +185,7 @@ function showRecents(){
         <div class="row" id="${all_data_server[i]._id}">
           <div class="col-sm-8 col-sm-offset-2">
             <div class="panel panel-default">
-              <div class="panel-heading pull-right">
-                <button type="button" onclick="deleteData('${all_data_server[i]._id}')">x</button>
-              </div>
+              ${functionDelete(all_data_server[i])}
               <div class="panel-body">
                 <div class="col-sm-4">
                   <img src="${all_data_server[i].avatar_url}" class="img-responsive">
