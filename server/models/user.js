@@ -9,6 +9,9 @@ const User = new Schema({
     },
     password: {
         type: String
+    },
+    photo_avatar: {
+        type: String
     }
 }, {
     timestamps: true

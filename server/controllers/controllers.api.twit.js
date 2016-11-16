@@ -80,7 +80,7 @@ module.exports = {
         }
 
         const twit = {
-            avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
+            avatar_url: req.body.photo_avatar,
             content: req.body.content,
             username: req.body.username,
             hashtag_names: tempArr

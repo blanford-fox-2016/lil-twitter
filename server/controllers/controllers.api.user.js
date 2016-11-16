@@ -8,14 +8,17 @@ module.exports = {
             {
                 username: 'admin',
                 password: 'admin',
+                photo_avatar: 'https://demo.bookstackapp.com/user_avatar.png'
             },
             {
                 username: 'dharmadi',
                 password: 'dharmadi',
+                photo_avatar: 'https://demo.bookstackapp.com/user_avatar.png'
             },
             {
                 username: 'yoni',
                 password: 'yoni',
+                photo_avatar: 'https://demo.bookstackapp.com/user_avatar.png'
             }
         ]
 
@@ -23,7 +26,8 @@ module.exports = {
 
         for (let i = 0; i < dataUser.length; i++) {
             User.register(new User({
-                username: dataUser[i].username
+                username: dataUser[i].username,
+                photo_avatar: dataUser[i].photo_avatar
             }), dataUser[i].password, function (err, data) {
                 if (err) res.json(err)
                 else {
@@ -58,14 +62,23 @@ module.exports = {
 
     localRegisterUser: function (req, res) {
         User.register(new User({
-            username: req.body.username
+            username: req.body.username,
+            photo_avatar: req.body.photo_avatar
         }), req.body.password, function (err, data) {
             if (err) res.json(err)
             else {
                 passport.authenticate('local')(req, res, function () {
                     req.session.save(function (err) {
                         if (err) res.json(err)
-                        else res.json(data)
+                        else {
+                            return res.status(200).json({
+                                token: jwt.sign({
+                                    userId: data._id,
+                                    username: data.username,
+                                    photo_avatar: data.photo_avatar
+                                }, process.env.SESSION_SECRET)
+                            })
+                        }
                     })
                 })
             }
@@ -99,7 +112,8 @@ module.exports = {
                 return res.status(200).json({
                     token: jwt.sign({
                         userId: user._id,
-                        username: user.username
+                        username: user.username,
+                        photo_avatar: user.photo_avatar
                     }, process.env.SESSION_SECRET)
                 })
             }

@@ -5,10 +5,9 @@ const rowOfTwits = $('#rowOfTwits')
 // const userNav = $('#userNav')
 
 $(document).ready(function () {
-
-    if (Auth.getToken()) {
+    if (typeof Auth.getUser().username != "undefined") {
         changeUserNav()
-        formPage()
+        formPage(Auth.getUser().photo_avatar)
         getAllTwit()
     }
     else {
@@ -16,12 +15,12 @@ $(document).ready(function () {
     }
 })
 
-function formPage() {
+function formPage(avatar) {
     let html = `
         <div class="col-sm-6 col-sm-offset-3">
             <form id="formCreateTwit" class="form-inline">
                 <div class="form-group">
-                    <img class="img-responsive col-sm-2" src="http://www.littlestarsplayschool.com/images/1466407606547378dummy.png" alt="">
+                    <img class="img-responsive col-sm-2" src="${avatar}" alt="">
                     <textarea name="twit" id="inputTwit" rows="3" class="col-sm-10" placeholder="What's going on?"></textarea>
                     <button id="buttonCreateTwit" class="btn btn-success">Create</button>
                 </div>
@@ -106,7 +105,8 @@ function createTwit() {
         data: {
             username: username,
             content: content,
-            hashtag: hashtag
+            hashtag: hashtag,
+            photo_avatar: Auth.getUser().photo_avatar
         },
         success: function (data) {
             updateViewAfterCreate(data)
@@ -187,12 +187,14 @@ function loginUser(username, password) {
             password: password
         },
         success: function (data) {
+            console.log(data)
             Auth.authenticateUser(data)
             $('input[name="usernameLogin"]').val("")
             $('input[name="passwordLogin"]').val("")
             $('#modalLogin').modal('hide')
             changeUserNav()
-            formPage()
+            formPage(Auth.getUser(data).photo_avatar)
+            getAllTwit()
         },
         error: function (data) {
             alert('Wrong username or password')
@@ -213,6 +215,8 @@ function changeUserNav() {
 $(document).on('click', 'a[name="logoutUser"]', function () {
     Auth.deauthenticateUser()
     notLoginNav()
+    $('#formPage').html('')
+    $('#rowOfTwits').html('')
 })
 
 
@@ -234,4 +238,36 @@ function getSearch(search) {
 
 function updateViewAfterSearch(data) {
     getTwit(data)
+}
+
+$(document).on('click', 'button[name="registerUser"]', function (e) {
+    e.preventDefault()
+    let username = $('input[name="usernameRegister"]').val()
+    let password = $('input[name="passwordRegister"]').val()
+    let photo_avatar = $('input[name="photoAvatar"]').val()
+    registerUser(username, password, photo_avatar)
+})
+
+function registerUser(username, password, photo_avatar) {
+    $.ajax({
+        url: `${SERVER_URL_USER}`,
+        method: 'post',
+        contentType: `${CONTENT_TYPE}`,
+        data: {
+            username: username,
+            password: password,
+            photo_avatar: photo_avatar
+        },
+        success: function (data) {
+            console.log(data)
+            Auth.authenticateUser(data)
+            $('input[name="usernameRegister"]').val("")
+            $('input[name="passwordRegister"]').val("")
+            $('input[name="photoAvatar"]').val("")
+            $('#modalRegister').modal('hide')
+            changeUserNav()
+            formPage(Auth.getUser().photo_avatar)
+            getAllTwit()
+        }
+    })
 }
