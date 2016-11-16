@@ -18,7 +18,7 @@ let getRecentTweets = (req, res) => {
     if(!all_data) res.status(404).json(`Failed to get recent tweet`)
 
     res.status(200).json(all_data)
-  }).limit(50)
+  }).sort({_id: -1}).limit(50)
 }
 
 /*
