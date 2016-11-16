@@ -5,7 +5,7 @@ html {
 body {
     height: 100%%;
     color: white;
-    padding: 50px 0;
+    padding: 80px 0;
     font-family: 'Rancho', cursive;
     background: rgba(255, 202, 55, 1);
     background: -moz-linear-gradient(top, rgba(255, 202, 55, 1) 0%, rgba(255, 127, 8, 1) 100%);
@@ -21,7 +21,7 @@ body {
 }
 
 .navbar-default {
-    background-color: #2E7EB6;
+    background-color: #F4B027;
 }
 
 .navbar-fixed-top {
