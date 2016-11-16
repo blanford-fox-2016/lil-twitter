@@ -9,7 +9,7 @@ let spreaderSchema = new Schema ({
   avatar : String,
   content : String,
   createdAt: {type: Date, default: Date.now},
-  hastags: [String]
+  hashtags: [String]
 })
 
 spreaderSchema.plugin(Increment, { inc_field: 'spreader_id' });
