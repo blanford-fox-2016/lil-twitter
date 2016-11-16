@@ -6,11 +6,8 @@ const controller = require('../controller/twit.controller')
 router.get('/recent', controller.getRecentTwit);
 router.get('/search', controller.popularHashtag);
 router.get('/river', controller.popularRiver);
-
 router.get('/search', controller.search)
-
 router.post('/', controller.createNewTwit);
-
 router.delete('/:id', controller.deleteTwit);
 
 

@@ -1,14 +1,22 @@
 require('dotenv').config()
 const express = require('express');
-const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const api = require('./routes/twit.api');
+const auth = require('./routes/auth.api')
 const mongoose = require('mongoose');
+const session = require('express-session')
+
+const passport = require('passport')
+
+const LocalStrategy = require('passport-local').Strategy
+
 const app = express();
+const ModelUser = require('./models/auth.model')
+
 const Twit = require('./models/twit.model')
 
 // MONGODB AND MONGOOSE
@@ -20,9 +28,31 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
-app.use(express.static(path.join(__dirname, 'public')));
+
+// -----------------------------------------------------------------------------
+// ROUTE AND PASSPORT CONFIGURATION
+// -----------------------------------------------------------------------------
+
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new LocalStrategy(ModelUser.authenticate()))
+
 
 app.use('/api/twit', api);
+app.use('/api/auth', auth);
+
+
+// BIND PASSPORT WITH USER MODEL (PASSPORT-LOCAL-MONGOOSE)
+passport.serializeUser(ModelUser.serializeUser())
+passport.deserializeUser(ModelUser.deserializeUser())
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
