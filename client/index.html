@@ -18,11 +18,24 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
         </ul>
+        <div class="col-sm-6 col-md-3">
+           <form class="navbar-form" role="search">
+           <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search tweet" name="hashtag" id="hashtag">
+               <div class="input-group-btn">
+                   <button class="btn btn-default" type="submit" id="btn_search"><i class="glyphicon glyphicon-search"></i></button>
+               </div>
+           </div>
+           </form>
+       </div>
       </div>
     </nav>
     <!-- navbar -->
 
     <div class="container">
+      <div id="search">
+
+      </div>
       <form id="form_new_tweet">
         <div class="form-group">
           <label for="content">New Tweet</label>
@@ -33,7 +46,6 @@
         </div>
         <div class="form-group"></div>
       </form>
-
       <div id="recent">
 
       </div>

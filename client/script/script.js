@@ -7,7 +7,53 @@ $(document).ready(function(){
   })
 
   showRecents()
+
+  // process search
+  $('#btn_search').on('click', function(e){
+    e.preventDefault()
+    processSearch()
+  })
 })
+
+function closeSearch(id){
+  $(`#search_${id}`).remove()
+}
+
+function processSearch(){
+  var hashtag = $('#hashtag').val()
+  $.ajax({
+    url: URL+'/search?hashtag='+hashtag,
+    success: function(searched_data){
+      console.log(searched_data);
+      var search_HTML = ''
+      for (var i = 0; i < searched_data.length; i++) {
+        search_HTML = `
+        <div class="row" id="search_${searched_data[i]._id}">
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="panel panel-default">
+              <div class="panel-heading pull-right">
+                <button type="button" onclick="closeSearch('${searched_data[i]._id}')">x</button>
+              </div>
+              <div class="panel-body">
+                <div class="col-sm-4">
+                  <img src="${searched_data[i].avatar_url}" class="img-responsive">
+                  <p>@${searched_data[i].username}</p>
+                </div>
+                <div class="col-sm-8">
+                  <h3>tweet's content:</h3>
+                  <br>
+                  <h4>${searched_data[i].content}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+      }
+      $('#search').append(search_HTML)
+    }
+  })
+}
 
 function deleteData(id){
   $.ajax({
@@ -41,8 +87,9 @@ function showRecents(){
                   <p>@${all_data_server[i].username}</p>
                 </div>
                 <div class="col-sm-8">
-                  tweet:
-                  ${all_data_server[i].content}
+                  <h3>tweet's content:</h3>
+                  <br>
+                  <h4>${all_data_server[i].content}</h4>
                 </div>
               </div>
             </div>
@@ -58,25 +105,27 @@ function showRecents(){
 // process new tweet
 function ajaxPOST(){
   var content = $('#content').val().split(" ")
-  var hashtag = []
+  var hashtagUI = []
+
   for (var i = 0; i < content.length; i++) {
-    // console.log(hashtag[i][0]);
     if(content[i][0] === '#'){
       content[i] = content[i].slice(1)
-      hashtag.push(content[i])
+      hashtagUI.push(content[i])
     }
   }
-  // console.log(hashtag);
+
   var new_data = {
     //avatar_url: dari localstorage
     //username: dari localstorage
     content: $('#content').val(),
-    hashtag: hashtag
+    hashtag: hashtagUI
     //todo: hastag
   }
-  // console.log(new_data);
-  $.post({
+  console.log(new_data);
+
+  $.ajax({
     url: URL,
+    method: 'POST',
     data: new_data,
     success: function(new_data_server){
       // console.log(new_data);
@@ -93,8 +142,9 @@ function ajaxPOST(){
                 <p>@${new_data_server.username}</p>
               </div>
               <div class="col-sm-8">
-                tweet:
-                ${new_data_server.content}
+                <h3>tweet's content:</h3>
+                <br>
+                <h4>${new_data_server.content}</h4>
               </div>
             </div>
           </div>

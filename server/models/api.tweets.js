@@ -7,7 +7,7 @@ let tweetSchema = new Schema({
   "avatar_url"  : String,
   "content"     : String,
   "username"    : String,
-  "hashtag"      : []
+  "hashtag"     : Array
 },{
   "timestamps": true
 })
