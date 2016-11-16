@@ -7,7 +7,15 @@ const Tweet = require('../models/tweets')
 module.exports = {
   //get all
   getDatas: (req, res) => {
-    Tweet.find({}, (err, data) => {
+    var query = Tweet.find({})
+
+    if(req.query.tweet){
+      query = Tweet.find({
+        tweet: {$in: req.query.tweet}
+      })
+    }
+
+    query.exec((err, data) => {
       if (err) res.status(400).json({ 'error': `Error: ${err}` })
       if (!data) res.status(404).json({ 'message': 'Failed to get all' })
       res.status(200).json(data)
