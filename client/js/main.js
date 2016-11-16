@@ -2,6 +2,7 @@ var app = new Vue({
   el: '#app',
   data: {
     authenticated: false,
+    regstat: false,
     auth_failed: false,
     mprits: [],
     authmode: 'up',
@@ -68,7 +69,8 @@ var app = new Vue({
         avatar_url: app.ava
       })
       .then(function(response) {
-        alert(response)
+        alert('Your registration was successful!')
+        app.regstat = true
       })
       .catch(function(error) {
         console.log(error);
@@ -115,6 +117,12 @@ var app = new Vue({
       app.ses_username = localStorage.getItem('ses_username')
       app.ses_name = localStorage.getItem('ses_name')
       app.ses_ava = localStorage.getItem('ses_ava')
+    },
+    falseregstat: function() {
+      app.regstat = false;
+    },
+    falseauthfailed: function() {
+      app.auth_failed = false;
     }
   }
 })
