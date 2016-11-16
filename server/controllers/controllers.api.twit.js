@@ -90,6 +90,11 @@ module.exports = {
     },
 
     deleteTwitById: (req, res) => {
-
+        Twit.findOneAndRemove({
+            _id: req.params.id
+        }, (err, data) => {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     }
 }

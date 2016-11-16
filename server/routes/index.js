@@ -8,5 +8,6 @@ router.get('/:id', twitController.getTwitById)
 router.get('/search/:hashtag', twitController.getTwitByHashtag)
 router.post('/', twitController.createTwit)
 router.delete('/', twitController.deleteAllTwit)
+router.delete('/:id', twitController.deleteTwitById)
 
 module.exports = router;
