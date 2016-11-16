@@ -27,6 +27,12 @@ let generate = (req, res) => {
     .catch((err) => res.json(err))
 }
 
+module.exports = {
+  list,
+  findHastag,
+  generate
+}
+
 
 // The most popular tweet
 // let findPopular = (req, res) => {

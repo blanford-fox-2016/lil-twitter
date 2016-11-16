@@ -16,4 +16,4 @@ let tweetSchema = new Schema ({
 
 tweetSchema.plugin(Increment, { inc_field: 'tweet_id' });
 
-module.exports = mongoose.model('Twit', tweetSchema)
+module.exports = mongoose.model('Tweet', tweetSchema)
