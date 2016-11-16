@@ -57,12 +57,24 @@ function showRecents(){
 
 // process new tweet
 function ajaxPOST(){
+  var content = $('#content').val().split(" ")
+  var hashtag = []
+  for (var i = 0; i < content.length; i++) {
+    // console.log(hashtag[i][0]);
+    if(content[i][0] === '#'){
+      content[i] = content[i].slice(1)
+      hashtag.push(content[i])
+    }
+  }
+  // console.log(hashtag);
   var new_data = {
     //avatar_url: dari localstorage
     //username: dari localstorage
-    content: $('#content').val()
+    content: $('#content').val(),
+    hashtag: hashtag
     //todo: hastag
   }
+  // console.log(new_data);
   $.post({
     url: URL,
     data: new_data,
