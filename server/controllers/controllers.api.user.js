@@ -93,8 +93,8 @@ module.exports = {
         passport.authenticate('local', {
 
         }, function (err, user, info) {
-            console.log(user)
             if (err) return res.json(err)
+            else if (!user) return res.status(400).json('No User Found')
             else {
                 return res.status(200).json({
                     token: jwt.sign({

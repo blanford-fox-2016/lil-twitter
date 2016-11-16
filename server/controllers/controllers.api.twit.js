@@ -75,7 +75,7 @@ module.exports = {
         const twit = {
             avatar_url: 'http://www.littlestarsplayschool.com/images/1466407606547378dummy.png',
             content: req.body.content,
-            username: 'dharmadi93',
+            username: req.body.username,
             hashtag_names: ['apa', 'aja']
         }
 
