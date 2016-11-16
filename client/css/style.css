@@ -1,0 +1,22 @@
+.navbar {
+  border-radius: 0;
+}
+#addNewBtn {
+  margin-top: 7.5px;
+}
+.h-title {
+  margin-top: 0px;
+}
+.navbar {
+  margin-bottom: 0;
+}
+.navbar-brand {
+  padding: 10px 15px;
+}
+img#mascot {
+  max-width: 48px !important;
+  display: inline-table !important;
+}
+footer {
+    margin: 50px 0;
+}
