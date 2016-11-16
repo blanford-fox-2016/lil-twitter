@@ -78,8 +78,6 @@ function deleteData(pointer) {
         })
 }
 
-var initFlagMap2 = false
-
 //show edit data form
 function showEditData(pointer) {
     $("#process-edit-house").attr('data-id', '')
@@ -98,13 +96,6 @@ function showEditData(pointer) {
             $("#edit-house-form input[name=image]").attr('value', data.image)
             $("#process-edit-house").attr('data-id', data._id)
         })
-
-    setTimeout(function(){
-        if(!initFlagMap2){
-            initFlagMap2 = true
-            mapOnEdit()    
-        }
-    }, 1000)
 }
 
 //edit data
@@ -142,27 +133,7 @@ function processEditData(pointer, e) {
         })
 }
 
-function disableEnter() {
-    $("#add-house-form").bind("keypress", function(e) {
-        if (e.keyCode == 13) {
-            return false;
-        }
-    })
-
-    $("#edit-house-form").bind("keypress", function(e) {
-        if (e.keyCode == 13) {
-            return false;
-        }
-    })
-}
-
-function addcommas(input){
-    var text = input.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
-    return text
-  }
-
 $(function() {
     getAllDatas()
     addData()
-    disableEnter()
 })
