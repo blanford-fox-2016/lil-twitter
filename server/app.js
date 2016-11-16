@@ -6,7 +6,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const routesTweet = require('./routes/api.tweet')
+const routesTweet = require('./routes/api.tweets')
 
 const app = express();
 
