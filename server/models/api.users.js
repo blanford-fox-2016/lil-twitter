@@ -1,7 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const passportLocalMonggose = require('passport-local-mongoose')
+const passportLocalMongoose = require('passport-local-mongoose')
 const Schema = mongoose.Schema
 
 let UsersSchema = new Schema({
@@ -10,14 +10,14 @@ let UsersSchema = new Schema({
     required  : true
   },
   password : {
-    type      : String,
-    required  : true,
+    type: String,
     lowercase : true,
-    trim      : true
+    trim      : true,
+    // required : true
   },
   avatar_url: String
 })
 
-UsersSchema.plugin(passportLocalMonggose)
+UsersSchema.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model('Users', UsersSchema)

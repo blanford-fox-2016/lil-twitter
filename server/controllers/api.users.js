@@ -74,12 +74,12 @@ let registerLocalUser = (req, res, next) => {
   console.log(req.body);
 
   User.register(new User({
-    username : req.body.username
+    username : req.body.username,
+    avatar_url : req.body.avatar_url
   }),
-  req.body.password,
-  (err, new_user) => {
-    if(err) res.status(400).json({'error': `Register Error: ${err}`})
-    if(!new_user) res.status(404).json({'message': 'Failed to register a user'})
+  req.body.password, (err, new_user) => {
+    if(err) return res.status(400).json({'error': `Register Error: ${err}`})
+    if(!new_user) return res.status(404).json({'message': 'Failed to register a user'})
 
     passport.authenticate('local', {
       successRedirect: '/',
@@ -93,7 +93,8 @@ let registerLocalUser = (req, res, next) => {
       return res.status(200).json({
         token: jwt.sign({
           sub: user._id,
-          username: user.username
+          username: user.username,
+          avatar_url: user.avatar_url
         }, 'secret')
       })
     })(req, res, next)

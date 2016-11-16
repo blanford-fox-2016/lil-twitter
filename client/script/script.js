@@ -61,7 +61,8 @@ function processLogin(){
 function processRegister(){
   var data_new_user = {
     username: $('#username').val(),
-    password: $('#password').val()
+    password: $('#password').val(),
+    avatar_url: $('#avatar_url').val()
   }
   $.post({
     url: $('#form_register').attr('action'),
