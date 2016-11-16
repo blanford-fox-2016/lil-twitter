@@ -87,6 +87,7 @@ function processLogin(){
       if(Auth.getUser().username){
         window.location = 'recent_home.html'
       }else{
+        alert('input salah')
         window.location = 'index.html'
         localStorage.removeItem('token')
       }
