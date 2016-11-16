@@ -170,6 +170,8 @@ function functionDelete(data){
     return `<div class="panel-heading pull-right">
       <button type="button" onclick="deleteData('${data._id}')">x</button>
     </div>`
+  }else{
+    return ''
   }
 }
 

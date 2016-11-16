@@ -91,6 +91,7 @@ let registerLocalUser = (req, res, next) => {
       if(!user) return res.status(404).json({'message': 'Register succeded but sign in falied'})
 
       return res.status(200).json({
+        message: "login berhasil",
         token: jwt.sign({
           sub: user._id,
           username: user.username,
