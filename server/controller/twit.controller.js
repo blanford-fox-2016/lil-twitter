@@ -13,6 +13,15 @@ module.exports = {
         });
     },
     popularHashtag: function(req, res) {
+        Twit.find({
+            hashtag: req.query.q
+        }, function(err, data) {
+            if (err) {
+                res.json({ message: `Error : ${err}` })
+            } else {
+                res.json(data)
+            }
+        })
 
     },
     popularRiver: function(req, res) {

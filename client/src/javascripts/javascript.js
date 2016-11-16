@@ -16,6 +16,7 @@ function homePage() {
     $('#nav-logout').show()
     $('#nav-home').on('click', loadTwit)
     $('#nav-create').on('click', formNewTwit)
+    $('#btn-search').on('click', searchTwit)
 
 }
 
@@ -83,7 +84,7 @@ function loadTwit() {
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
-                <p id=tweets>${data[i].content}</p>
+                <p class='usertweet'>${data[i].content}</p>
             </div>
         </div>
         `
@@ -146,6 +147,36 @@ function deleteTwit(parameter) {
         }
     })
 }
+
+function searchTwit() {
+    let $search = $('#input-search').val()
+    $.ajax({
+        url: `http://localhost:3000/api/twit/search?q=${$search}`,
+        method: "get",
+        success: function(data) {
+            $('#main-container').empty()
+            html = ''
+            html += `<div class="page-header"><h1>Search Result</h1></div>`
+            for (var i = 0; i < data.length; i++) {
+                html += `
+  <div class="panel panel-info">
+      <div class="panel-heading"><img src='${data[i].avatar_url}' class="avatar img-circle pull-left">
+          <span><h3> ${data[i].name} - @${data[i].username} </h3></span>
+          <button class="btn btn-danger close" onclick="deleteTwit(${data[i].twitId})"><span class="glyphicon glyphicon-trash"></span></button>
+          <div class="clearfix"></div>
+      </div>
+      <div class="panel-body">
+          <p class='usertweet'>${data[i].content}</p>
+      </div>
+  </div>
+  `
+            }
+            $('#main-container').append(html)
+        }
+    })
+}
+
+
 
 function formLogin() {
     $('#main-container').empty()
