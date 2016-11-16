@@ -2,12 +2,22 @@ var app = new Vue({
   el: '#app',
   data: {
     mprits: [],
+    authmode: 'up',
+    //MPRIT
     name: '',
     username: '',
     ava: '',
-    content: ''
+    content: '',
+    email: '',
+    password: ''
   },
   methods: {
+    setauthin: function() {
+      app.authmode = 'in'
+    },
+    setauthup: function() {
+      app.authmode = 'up'
+    },
     loadMprits : function() {
       axios.get('http://localhost:3000/api/tweets', {})
       .then(function (response) {
