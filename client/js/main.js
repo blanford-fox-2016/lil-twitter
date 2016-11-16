@@ -19,10 +19,27 @@ var app = new Vue({
       })
     },
     postNewMprit: function() {
-
+      axios.post('http://localhost:3000/api/tweets',{
+        name: app.name,
+        username: app.username,
+        avatar_url: app.ava,
+        content: app.content
+      })
+      .then(function (response) {
+        app.mprits.unshift(response.data)
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
     },
-    deleteMprit: function() {
-      
+    deleteMprit: function(id) {
+      axios.delete('http://localhost/api/tweets/'+id, {})
+      .then(function(response) {
+        app.loadMprits()
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
     }
   }
 })
