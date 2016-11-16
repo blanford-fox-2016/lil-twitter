@@ -27,9 +27,9 @@ function processSearch(){
       console.log(searched_data);
       var search_HTML = ''
       for (var i = 0; i < searched_data.length; i++) {
-        search_HTML = `
+        search_HTML += `
         <div class="row" id="search_${searched_data[i]._id}">
-          <div class="col-sm-10 col-sm-offset-1">
+          <div class="col-sm-6 col-sm-offset-3">
             <div class="panel panel-default">
               <div class="panel-heading pull-right">
                 <button type="button" onclick="closeSearch('${searched_data[i]._id}')">x</button>
@@ -50,7 +50,8 @@ function processSearch(){
         </div>
         `
       }
-      $('#search').append(search_HTML)
+      $('#search').prepend(search_HTML)
+      $('#hashtag').val('')
     }
   })
 }
@@ -104,21 +105,11 @@ function showRecents(){
 
 // process new tweet
 function ajaxPOST(){
-  var content = $('#content').val().split(" ")
-  var hashtagUI = []
-
-  for (var i = 0; i < content.length; i++) {
-    if(content[i][0] === '#'){
-      content[i] = content[i].slice(1)
-      hashtagUI.push(content[i])
-    }
-  }
 
   var new_data = {
     //avatar_url: dari localstorage
     //username: dari localstorage
-    content: $('#content').val(),
-    hashtag: hashtagUI
+    content: $('#content').val()
     //todo: hastag
   }
   console.log(new_data);

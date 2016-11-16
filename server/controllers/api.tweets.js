@@ -30,13 +30,22 @@ let getRecentTweets = (req, res) => {
   * @apiSuccess respond JSON new_data
 */
 let postNewTweet = (req, res) => {
-  console.log(req.body);
+  var content = req.body.content.split(" ")
+  var hashtagUI = []
+
+  for (var i = 0; i < content.length; i++) {
+    if(content[i][0] === '#'){
+      content[i] = content[i].slice(1)
+      hashtagUI.push(content[i])
+    }
+  }
+  console.log(hashtagUI);
 
   Tweet.create({
     avatar_url: "https://s-media-cache-ak0.pinimg.com/736x/f9/44/98/f944980f424d28501fe6fb8232d844c5.jpg",
     content: req.body.content,
     username: "kenduigraha",
-    hashtag: req.body.hashtag
+    hashtag: hashtagUI
   }, (err, new_data) => {
     if(err) res.status(400).json({'error': `Error : ${err}`})
     if(!new_data) res.status(404).json(`Failed to create new tweet`)
