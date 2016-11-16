@@ -54,7 +54,7 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use('/api/twit', routes);
-app.use('/users', users);
+app.use('/api/user', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
