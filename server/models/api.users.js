@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let UsersSchema = new Schema({
-  userId  : Number,
   username : {
     type      : String,
     required  : true

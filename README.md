@@ -17,7 +17,7 @@ gulp
 
 ```sh
 cd server
-npm isntall
+npm install
 npm run dev
 ```
 
@@ -53,6 +53,36 @@ npm run dev
 3. MONGODB_URL: mongodb://localhost/db_lil_tweet
 
 ### Model's Schema
+
+#### Users
+```json
+let UsersSchema = new Schema({
+  "username" : {
+    "type"      : String,
+    "required"  : true
+  },
+  "password" : {
+    "type"      : String,
+    "requires"  : true,
+    "lowercase" : true,
+    "trim"      : true
+  }
+})
+```
+
+#### Tweet
+
+#### Users
+```json
+{
+  "username": "admin",
+  "password": "admin",
+  "createdAt": "createdAt",
+  "updatedAt": "updatedAt"
+}
+```
+
+#### Tweet
 
 ```json
 const mongoose = require('mongoose')
