@@ -57,7 +57,7 @@ npm run dev
 ```json
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-let tweetSchema = new Schema{
+let tweetSchema = new Schema({
   "avatar_url"  : String,
   "content"     : String,
   "username"    : String,
@@ -66,7 +66,7 @@ let tweetSchema = new Schema{
   ]
 }, {
   "timestamps": true
-}
+})
 ```
 
 ### Expected Model's Result
