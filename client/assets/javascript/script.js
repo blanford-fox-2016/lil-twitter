@@ -27,9 +27,7 @@ var app = new Vue({
         content: app.content,
         hastags: app.hastags,
       })
-      .then(function (tweet) {
-        app.tweets.unshift(tweet.data)
-      })
+      .then((tweet) => {app.tweets.unshift(tweet.data)})
       .catch(function(error) {
         console.log(error);
       })
