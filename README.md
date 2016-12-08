@@ -115,6 +115,7 @@ let tweetSchema = new Schema({
 ## API
 
 Default development port and host : http://localhost:3000/
+
 | Routes                        | HTTP   | Description                          |
 |-------------------------------|--------|--------------------------------------|
 | /api/tweets                   | GET    | recent tweet (maximal 50 tweets)     |
